@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuu45uq4caif7"]
+
+[ext_resource type="Texture2D" uid="uid://ble7klreum1gh" path="res://Logo.jpg" id="1_gksxp"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Logo" type="Sprite2D" parent="."]
+texture = ExtResource("1_gksxp")
+centered = false
