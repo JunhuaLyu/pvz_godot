@@ -1,11 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://cuu45uq4caif7"]
+[gd_scene load_steps=6 format=3 uid="uid://cuu45uq4caif7"]
 
 [ext_resource type="Texture2D" uid="uid://ble7klreum1gh" path="res://Logo.jpg" id="1_gksxp"]
+[ext_resource type="Script" path="res://main.gd" id="1_hjqqd"]
+[ext_resource type="Script" path="res://mainmenu/StartButton.gd" id="2_w5to6"]
+
+[sub_resource type="Gradient" id="Gradient_lrsec"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6igvr"]
+gradient = SubResource("Gradient_lrsec")
+fill = 2
+fill_from = Vector2(0.488532, 0.497706)
+fill_to = Vector2(1, 0.00229358)
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_hjqqd")
 
 [node name="Logo" type="Sprite2D" parent="."]
 texture = ExtResource("1_gksxp")
 centered = false
+
+[node name="StartButton" type="PointLight2D" parent="."]
+position = Vector2(352.5, 353)
+scale = Vector2(2.35938, 1.46875)
+enabled = false
+texture = SubResource("GradientTexture2D_6igvr")
+script = ExtResource("2_w5to6")
+
+[connection signal="btn_pressed" from="StartButton" to="." method="_on_start_button_btn_pressed"]
