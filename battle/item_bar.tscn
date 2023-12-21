@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjqtoc8dtrrmw"]
+
+[ext_resource type="Texture2D" uid="uid://bru53hxqwphwj" path="res://battle/item_bar.png" id="1_cfbsq"]
+[ext_resource type="Script" path="res://battle/item_bar.gd" id="1_jkbde"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_jkbde")
+
+[node name="sunshine_rect" type="Sprite2D" parent="."]
+texture = ExtResource("1_cfbsq")
+centered = false
+region_enabled = true
+region_rect = Rect2(56, 0, 78, 87)

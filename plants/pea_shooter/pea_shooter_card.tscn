@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjrpikkfm684w"]
+
+[ext_resource type="Texture2D" uid="uid://82wki65ubeec" path="res://plants/pea_shooter/pea_shooter_1.png" id="1_fkq65"]
+
+[node name="PeaShooterCard" type="Sprite2D"]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_fkq65")
+offset = Vector2(42, 40)

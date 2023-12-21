@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw3qyjp3reuht"]
+
+[ext_resource type="Texture2D" uid="uid://82wki65ubeec" path="res://plants/pea_shooter/pea_shooter_1.png" id="1_u6ulm"]
+
+[node name="PeaShooter" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u6ulm")
