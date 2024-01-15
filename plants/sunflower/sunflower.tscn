@@ -1,0 +1,69 @@
+[gd_scene load_steps=22 format=3 uid="uid://c6w3vdqrqujf8"]
+
+[ext_resource type="Texture2D" uid="uid://y1325egh0kxf" path="res://plants/sunflower/sunflower_1.png" id="1_jpofg"]
+[ext_resource type="Texture2D" uid="uid://b5lrrgun6f1oo" path="res://plants/sunflower/normal/sunflower_2.png" id="3_d63b7"]
+[ext_resource type="Texture2D" uid="uid://r2tp4mfx3xlg" path="res://plants/sunflower/normal/sunflower_3.png" id="4_vcf88"]
+[ext_resource type="Texture2D" uid="uid://cnb81cb4j7fwi" path="res://plants/sunflower/normal/sunflower_4.png" id="5_g1uby"]
+[ext_resource type="Texture2D" uid="uid://6yyd1xic4wva" path="res://plants/sunflower/normal/sunflower_5.png" id="6_efu34"]
+[ext_resource type="Texture2D" uid="uid://b6wadjmkjo1k5" path="res://plants/sunflower/normal/sunflower_6.png" id="7_km1b8"]
+[ext_resource type="Texture2D" uid="uid://bldt4nboqxmqj" path="res://plants/sunflower/normal/sunflower_7.png" id="8_53n3u"]
+[ext_resource type="Texture2D" uid="uid://d1wxvvkrxpp63" path="res://plants/sunflower/normal/sunflower_8.png" id="9_n3smq"]
+[ext_resource type="Texture2D" uid="uid://br2fvrgjiknej" path="res://plants/sunflower/normal/sunflower_9.png" id="10_x4d0m"]
+[ext_resource type="Texture2D" uid="uid://cabtnwnkdvict" path="res://plants/sunflower/normal/sunflower_10.png" id="11_q0yll"]
+[ext_resource type="Texture2D" uid="uid://bealdgsdcu67l" path="res://plants/sunflower/normal/sunflower_11.png" id="12_v3gxk"]
+[ext_resource type="Texture2D" uid="uid://bunxkt86aq74i" path="res://plants/sunflower/normal/sunflower_12.png" id="13_1evbq"]
+[ext_resource type="Texture2D" uid="uid://c4uc3tov1ya6c" path="res://plants/sunflower/normal/sunflower_13.png" id="14_1hhv0"]
+[ext_resource type="Texture2D" uid="uid://dpb4676tn0yak" path="res://plants/sunflower/normal/sunflower_14.png" id="15_2bswa"]
+[ext_resource type="Texture2D" uid="uid://twuvl3g8j6v1" path="res://plants/sunflower/normal/sunflower_15.png" id="16_walq6"]
+[ext_resource type="Texture2D" uid="uid://ct3p2g51gjmnk" path="res://plants/sunflower/normal/sunflower_16.png" id="17_rhosk"]
+[ext_resource type="Texture2D" uid="uid://dwwbnghg64710" path="res://plants/sunflower/normal/sunflower_17.png" id="18_78tdn"]
+[ext_resource type="Texture2D" uid="uid://cm1a182kkqu72" path="res://plants/sunflower/normal/sunflower_18.png" id="19_vwq1e"]
+
+[sub_resource type="Animation" id="Animation_fwy8y"]
+resource_name = "sunflower_normal"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_jpofg"), ExtResource("3_d63b7"), ExtResource("4_vcf88"), ExtResource("5_g1uby"), ExtResource("6_efu34"), ExtResource("7_km1b8"), ExtResource("8_53n3u"), ExtResource("9_n3smq"), ExtResource("10_x4d0m"), ExtResource("11_q0yll"), ExtResource("12_v3gxk"), ExtResource("13_1evbq"), ExtResource("14_1hhv0"), ExtResource("15_2bswa"), ExtResource("16_walq6"), ExtResource("17_rhosk"), ExtResource("18_78tdn"), ExtResource("19_vwq1e")]
+}
+
+[sub_resource type="Animation" id="Animation_exyl8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jpofg")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s8eyl"]
+_data = {
+"RESET": SubResource("Animation_exyl8"),
+"sunflower_normal": SubResource("Animation_fwy8y")
+}
+
+[node name="Sunflower" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jpofg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s8eyl")
+}
+autoplay = "sunflower_normal"

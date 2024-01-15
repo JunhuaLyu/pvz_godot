@@ -1,8 +1,6 @@
 extends Node2D
 
-var pea_shooter_card = preload("res://plants/pea_shooter/pea_shooter_card.tscn").instantiate();
-var pea_shooter = preload("res://plants/pea_shooter/pea_shooter.tscn").instantiate();
-var plant_selected = null;
+signal plant_selected(name)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(8):		
@@ -22,43 +20,26 @@ func _ready():
 	bar_end_rect.position = Vector2(78 + 8 * 60, 0);
 	add_child(bar_end_rect);
 	
-	for i in range(9):		
-		var plant_card = load("res://battle/plant_card.tscn").instantiate();
-		plant_card.position = Vector2(80 + i * 54, 10);
-		var card_sprite = load("res://plants/pea_shooter/pea_shooter_card.tscn").instantiate();
-		plant_card.set_plant(card_sprite, 100);
-		plant_card.connect("plant_selected", _on_plant_select);
-		add_child(plant_card);				
+	var plant_card = load("res://battle/plant_card.tscn").instantiate();
+	plant_card.position = Vector2(80, 10);
+	var card_sprite = load("res://plants/sunflower/sunflower_card.tscn").instantiate();	
+	plant_card.set_plant("sunflower", card_sprite, 50);
+	plant_card.connect("plant_selected", _on_plant_select);
+	add_child(plant_card);				
+	
+	plant_card = load("res://battle/plant_card.tscn").instantiate();
+	plant_card.position = Vector2(80 + 1 * 54, 10);
+	card_sprite = load("res://plants/pea_shooter/pea_shooter_card.tscn").instantiate();
+	plant_card.set_plant("pea_shooter", card_sprite, 100);
+	plant_card.connect("plant_selected", _on_plant_select);
+	add_child(plant_card);				
 	
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
-func _input(event):
-	if event is InputEventMouseMotion and plant_selected != null:
-		plant_selected.position = event.position;
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			if plant_selected != null:
-				remove_child(plant_selected);
-				plant_selected = null;	
-	pass
-
-func _on_plant_select(sprite):
-	if plant_selected != null:
-		remove_child(plant_selected);
-	plant_selected = get_plant_selected_sprite("pea_shooter");
-	plant_selected.position = Input.get_last_mouse_velocity();
-	add_child(plant_selected);
-	pass
-	
-func get_plant_selected_sprite(plant_name):
-	match plant_name:
-		"pea_shooter":
-			return pea_shooter;
-		_:
-			pass;
+func _on_plant_select(name):
+	plant_selected.emit(name);
 	pass
