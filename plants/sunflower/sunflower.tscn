@@ -19,6 +19,21 @@
 [ext_resource type="Texture2D" uid="uid://dwwbnghg64710" path="res://plants/sunflower/normal/sunflower_17.png" id="18_78tdn"]
 [ext_resource type="Texture2D" uid="uid://cm1a182kkqu72" path="res://plants/sunflower/normal/sunflower_18.png" id="19_vwq1e"]
 
+[sub_resource type="Animation" id="Animation_exyl8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jpofg")]
+}
+
 [sub_resource type="Animation" id="Animation_fwy8y"]
 resource_name = "sunflower_normal"
 length = 1.8
@@ -34,21 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("1_jpofg"), ExtResource("3_d63b7"), ExtResource("4_vcf88"), ExtResource("5_g1uby"), ExtResource("6_efu34"), ExtResource("7_km1b8"), ExtResource("8_53n3u"), ExtResource("9_n3smq"), ExtResource("10_x4d0m"), ExtResource("11_q0yll"), ExtResource("12_v3gxk"), ExtResource("13_1evbq"), ExtResource("14_1hhv0"), ExtResource("15_2bswa"), ExtResource("16_walq6"), ExtResource("17_rhosk"), ExtResource("18_78tdn"), ExtResource("19_vwq1e")]
-}
-
-[sub_resource type="Animation" id="Animation_exyl8"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_jpofg")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_s8eyl"]
