@@ -4,14 +4,43 @@ extends Node2D
 #var sunflower = preload("res://plants/sunflower/sunflower.tscn").instantiate();
 
 var plant_selected = null;
+var sunshine_list = [];
+var sun_target;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$item_bar.connect("plant_selected", _on_plant_select);
+	sun_target = $item_bar.get_sunshine_target();
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	sunshine_list = sunshine_list.filter(
+		func(s): 
+			var width = sun_target.x - s.position.x;
+			var height = sun_target.y - s.position.y;
+			if abs(width) < 5 and abs(height) < 5:
+				remove_child(s);
+				return false;
+			var max = 4;
+			var _x = width;
+			var _y = height;
+			if abs(width) > abs(height):			
+				if _x > max:
+					_x = max;
+				elif _x < -max:
+					_x = -max;
+				_y = _x * height / width;
+			else:
+				if _y > max:
+					_y = max;
+				elif _y < -max:
+					_y = -max;
+				_x = _y * width / height;
+				
+			s.position.x += _x;
+			s.position.y += _y;
+			return true);	
 	pass
 
 func _input(event):
@@ -27,11 +56,21 @@ func _input(event):
 				plant_selected = null;	
 	pass
 
+func add_sunshine(position):
+	var sunshine = Sprite2D.new();
+	sunshine.texture = load("res://items/sunshine/sunshine.png");
+	sunshine.position = position;
+	sunshine.scale = Vector2(0.5, 0.5);
+	add_child(sunshine);
+	sunshine_list.append(sunshine);
+	pass
+
 func match_plant_field(position):
 	for i in range(9):
 		for j in range(5):
 			if position.x > 145 + i * 80 - 30 and position.x < 145 + i * 80 + 30 and position.y > 135 + j * 97 - 40 and position.y < 135 + j * 97 + 40:
 				plant_selected.position = Vector2(145 + i * 80, 135 + j * 97);
+				add_sunshine(Vector2(plant_selected.position));
 				return true;
 			# var plant_rect = Sprite2D.new();
 			# plant_rect.texture = load("res://battle/item_bar.png");

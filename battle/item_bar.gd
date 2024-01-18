@@ -1,6 +1,8 @@
 extends Node2D
 
 signal plant_selected(name)
+
+var sun_target;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(8):		
@@ -34,12 +36,22 @@ func _ready():
 	plant_card.connect("plant_selected", _on_plant_select);
 	add_child(plant_card);				
 	
+	sun_target = Vector2(40, 35);
+	#var sunshine = Sprite2D.new();
+	#sunshine.texture = load("res://items/sunshine/sunshine.png");
+	#sunshine.position = Vector2(40, 35);
+	#sunshine.scale = Vector2(0.5, 0.5);
+	#add_child(sunshine);
+
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
+	
+func get_sunshine_target():
+	return sun_target;
+		
 func _on_plant_select(name):
 	plant_selected.emit(name);
 	pass
