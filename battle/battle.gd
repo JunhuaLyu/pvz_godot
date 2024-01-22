@@ -56,7 +56,7 @@ func _input(event):
 				plant_selected = null;	
 	pass
 
-func add_sunshine(position):
+func _on_sunshine_generated(position):
 	var sunshine = Sprite2D.new();
 	sunshine.texture = load("res://items/sunshine/sunshine.png");
 	sunshine.position = position;
@@ -70,7 +70,9 @@ func match_plant_field(position):
 		for j in range(5):
 			if position.x > 145 + i * 80 - 30 and position.x < 145 + i * 80 + 30 and position.y > 135 + j * 97 - 40 and position.y < 135 + j * 97 + 40:
 				plant_selected.position = Vector2(145 + i * 80, 135 + j * 97);
-				add_sunshine(Vector2(plant_selected.position));
+				if plant_selected.get_plant_name() == "sunflower":
+					plant_selected.connect("sunshine_generate", _on_sunshine_generated);
+					plant_selected.set_active(true);
 				return true;
 			# var plant_rect = Sprite2D.new();
 			# plant_rect.texture = load("res://battle/item_bar.png");

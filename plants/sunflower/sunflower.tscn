@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6w3vdqrqujf8"]
+[gd_scene load_steps=23 format=3 uid="uid://c6w3vdqrqujf8"]
 
+[ext_resource type="Script" path="res://plants/sunflower/sunflower.gd" id="1_3wq2y"]
 [ext_resource type="Texture2D" uid="uid://y1325egh0kxf" path="res://plants/sunflower/sunflower_1.png" id="1_jpofg"]
 [ext_resource type="Texture2D" uid="uid://b5lrrgun6f1oo" path="res://plants/sunflower/normal/sunflower_2.png" id="3_d63b7"]
 [ext_resource type="Texture2D" uid="uid://r2tp4mfx3xlg" path="res://plants/sunflower/normal/sunflower_3.png" id="4_vcf88"]
@@ -58,6 +59,7 @@ _data = {
 }
 
 [node name="Sunflower" type="Node2D"]
+script = ExtResource("1_3wq2y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_jpofg")
