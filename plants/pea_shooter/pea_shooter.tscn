@@ -1,8 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw3qyjp3reuht"]
+[gd_scene load_steps=19 format=3 uid="uid://dw3qyjp3reuht"]
 
+[ext_resource type="Script" path="res://plants/pea_shooter/pea_shooter.gd" id="1_3oj6p"]
 [ext_resource type="Texture2D" uid="uid://82wki65ubeec" path="res://plants/pea_shooter/pea_shooter_1.png" id="1_u6ulm"]
+[ext_resource type="Texture2D" uid="uid://c2cdlp6iggdo" path="res://plants/pea_shooter/normal/pea_shooter_13.png" id="2_iifx1"]
+[ext_resource type="Texture2D" uid="uid://dlhqi2jo12ec6" path="res://plants/pea_shooter/normal/pea_shooter_2.png" id="4_7t1f3"]
+[ext_resource type="Texture2D" uid="uid://dabclluyhbard" path="res://plants/pea_shooter/normal/pea_shooter_3.png" id="5_st40y"]
+[ext_resource type="Texture2D" uid="uid://cc1cganyid0sl" path="res://plants/pea_shooter/normal/pea_shooter_4.png" id="6_npjgf"]
+[ext_resource type="Texture2D" uid="uid://dhj0o37ywcmma" path="res://plants/pea_shooter/normal/pea_shooter_5.png" id="7_thy8s"]
+[ext_resource type="Texture2D" uid="uid://dagkoq1rj0alh" path="res://plants/pea_shooter/normal/pea_shooter_6.png" id="8_hujj2"]
+[ext_resource type="Texture2D" uid="uid://w1ryyf6xbbvt" path="res://plants/pea_shooter/normal/pea_shooter_7.png" id="9_61x5k"]
+[ext_resource type="Texture2D" uid="uid://bd2kjqgwrp46g" path="res://plants/pea_shooter/normal/pea_shooter_8.png" id="10_mbonv"]
+[ext_resource type="Texture2D" uid="uid://bfpwwgfwmo6mn" path="res://plants/pea_shooter/normal/pea_shooter_9.png" id="11_t4rd5"]
+[ext_resource type="Texture2D" uid="uid://dnmdhefg7x8b7" path="res://plants/pea_shooter/normal/pea_shooter_10.png" id="12_1ew1j"]
+[ext_resource type="Texture2D" uid="uid://b4yiqqw5gofys" path="res://plants/pea_shooter/normal/pea_shooter_11.png" id="13_dtqte"]
+[ext_resource type="Texture2D" uid="uid://07lw8js4oava" path="res://plants/pea_shooter/normal/pea_shooter_12.png" id="14_38psn"]
 
-[node name="PeaShooter" type="Node2D"]
+[sub_resource type="Animation" id="Animation_x38jp"]
+resource_name = "pea_shooter_normal"
+length = 13.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_u6ulm"), ExtResource("4_7t1f3"), ExtResource("5_st40y"), ExtResource("6_npjgf"), ExtResource("7_thy8s"), ExtResource("8_hujj2"), ExtResource("9_61x5k"), ExtResource("10_mbonv"), ExtResource("11_t4rd5"), ExtResource("12_1ew1j"), ExtResource("13_dtqte"), ExtResource("14_38psn"), ExtResource("2_iifx1")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xtjp7"]
+_data = {
+"pea_shooter_normal": SubResource("Animation_x38jp")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7a3d3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hvd1"]
+size = Vector2(8000, 20)
+
+[node name="PeaShooter" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_3oj6p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_u6ulm")
+
+[node name="AnimationNormal" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xtjp7")
+}
+autoplay = "pea_shooter_normal"
+speed_scale = 10.4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7a3d3")
+
+[node name="detect" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detect"]
+shape = SubResource("RectangleShape2D_8hvd1")

@@ -11,3 +11,11 @@ texture = ExtResource("1_cfbsq")
 centered = false
 region_enabled = true
 region_rect = Rect2(56, 0, 78, 87)
+
+[node name="score" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -3,6 +3,7 @@ extends Node2D
 signal plant_selected(name)
 
 var sun_target;
+var sunshine_count;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for i in range(8):		
@@ -37,13 +38,19 @@ func _ready():
 	add_child(plant_card);				
 	
 	sun_target = Vector2(40, 35);
+	sunshine_count = 0;
 	#var sunshine = Sprite2D.new();
 	#sunshine.texture = load("res://items/sunshine/sunshine.png");
 	#sunshine.position = Vector2(40, 35);
 	#sunshine.scale = Vector2(0.5, 0.5);
 	#add_child(sunshine);
-
+	$score.position = Vector2(20, 60);
 	pass # Replace with function body.
+
+func add_sunshine(count):
+	sunshine_count += count;
+	$score.text = String.num_int64(sunshine_count);
+	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

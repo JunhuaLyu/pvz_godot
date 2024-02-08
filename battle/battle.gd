@@ -1,7 +1,8 @@
 extends Node2D
 
-#var pea_shooter = preload("res://plants/pea_shooter/pea_shooter.tscn").instantiate();
-#var sunflower = preload("res://plants/sunflower/sunflower.tscn").instantiate();
+var pea_shooter_tscn = preload("res://plants/pea_shooter/pea_shooter.tscn");
+var sunflower_tscn = preload("res://plants/sunflower/sunflower.tscn");
+var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
 
 var plant_selected = null;
 var sunshine_list = [];
@@ -21,6 +22,7 @@ func _process(delta):
 			var height = sun_target.y - s.position.y;
 			if abs(width) < 5 and abs(height) < 5:
 				remove_child(s);
+				$item_bar.add_sunshine(25);
 				return false;
 			var max = 4;
 			var _x = width;
@@ -54,6 +56,17 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if plant_selected != null and match_plant_field(event.position):
 				plant_selected = null;	
+	elif event is InputEventKey:
+		if event.keycode == Key.KEY_1 and event.pressed == true:
+			add_zombie(0);
+		elif event.keycode == Key.KEY_2 and event.pressed == true:
+			add_zombie(1);
+		elif event.keycode == Key.KEY_3 and event.pressed == true:
+			add_zombie(2);
+		elif event.keycode == Key.KEY_4 and event.pressed == true:
+			add_zombie(3);
+		elif event.keycode == Key.KEY_5 and event.pressed == true:
+			add_zombie(4);
 	pass
 
 func _on_sunshine_generated(position):
@@ -82,6 +95,12 @@ func match_plant_field(position):
 			#add_child(plant_rect);
 	return false;
 	
+func add_zombie(i):
+	var zombie_normal = zombie_normal_tscn.instantiate();
+	zombie_normal.position = Vector2(145 + 8 * 80, 135 + i * 97 - 24);
+	add_child(zombie_normal);
+	pass;
+	
 func _on_plant_select(name):
 	if plant_selected != null:
 		remove_child(plant_selected);
@@ -94,9 +113,9 @@ func _on_plant_select(name):
 func get_plant_selected_sprite(plant_name):
 	match plant_name:
 		"pea_shooter":
-			return load("res://plants/pea_shooter/pea_shooter.tscn").instantiate();
+			return pea_shooter_tscn.instantiate();
 		"sunflower":
-			return load("res://plants/sunflower/sunflower.tscn").instantiate();
+			return sunflower_tscn.instantiate();
 		_:
 			pass;
 	pass
