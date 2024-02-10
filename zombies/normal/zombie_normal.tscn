@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c6f5m56nc8bl5"]
+[gd_scene load_steps=56 format=3 uid="uid://c6f5m56nc8bl5"]
 
 [ext_resource type="Texture2D" uid="uid://ctc3887yuv0q4" path="res://zombies/normal/zombie_1.png" id="1_44grr"]
 [ext_resource type="Script" path="res://zombies/normal/zombie_normal.gd" id="1_pb6cr"]
@@ -29,6 +29,27 @@
 [ext_resource type="Texture2D" uid="uid://dlsho85c22xjy" path="res://images/zombies/normal/dead_7.png" id="27_na6x8"]
 [ext_resource type="Texture2D" uid="uid://p4olls2d5cp5" path="res://images/zombies/normal/dead_8.png" id="28_m1ayv"]
 [ext_resource type="Texture2D" uid="uid://70sdfnknrsst" path="res://images/zombies/normal/dead_9.png" id="29_0axum"]
+[ext_resource type="Texture2D" uid="uid://bsy00syib3ieo" path="res://images/zombies/normal/eat_0.png" id="30_0dsqh"]
+[ext_resource type="Texture2D" uid="uid://blg1sqc3g7p65" path="res://images/zombies/normal/eat_1.png" id="31_gbjcf"]
+[ext_resource type="Texture2D" uid="uid://dsujdw042xri7" path="res://images/zombies/normal/eat_2.png" id="32_f3vb1"]
+[ext_resource type="Texture2D" uid="uid://t57gcasdnx67" path="res://images/zombies/normal/eat_3.png" id="33_frcpo"]
+[ext_resource type="Texture2D" uid="uid://bv2tislah4frw" path="res://images/zombies/normal/eat_4.png" id="34_t2in2"]
+[ext_resource type="Texture2D" uid="uid://dybmameqmn6jw" path="res://images/zombies/normal/eat_5.png" id="35_spkde"]
+[ext_resource type="Texture2D" uid="uid://b1748irhtc147" path="res://images/zombies/normal/eat_6.png" id="36_bburo"]
+[ext_resource type="Texture2D" uid="uid://b6lwo22eyiq01" path="res://images/zombies/normal/eat_7.png" id="37_a6y3d"]
+[ext_resource type="Texture2D" uid="uid://bhuet8kubl8au" path="res://images/zombies/normal/eat_8.png" id="38_jvmsy"]
+[ext_resource type="Texture2D" uid="uid://d4awlncl7aee5" path="res://images/zombies/normal/eat_9.png" id="39_vveve"]
+[ext_resource type="Texture2D" uid="uid://cnrkghryy7l3f" path="res://images/zombies/normal/eat_10.png" id="40_gma3t"]
+[ext_resource type="Texture2D" uid="uid://b8uk8dx7flvh" path="res://images/zombies/normal/eat_11.png" id="41_edken"]
+[ext_resource type="Texture2D" uid="uid://t0xi2jw50ap5" path="res://images/zombies/normal/eat_12.png" id="42_7nogm"]
+[ext_resource type="Texture2D" uid="uid://bx0srji7ycmpm" path="res://images/zombies/normal/eat_13.png" id="43_c0wgm"]
+[ext_resource type="Texture2D" uid="uid://ctv0yik1wbiow" path="res://images/zombies/normal/eat_14.png" id="44_vmlma"]
+[ext_resource type="Texture2D" uid="uid://cn2dfji6soxho" path="res://images/zombies/normal/eat_15.png" id="45_ipftp"]
+[ext_resource type="Texture2D" uid="uid://bcxo83g3f870v" path="res://images/zombies/normal/eat_16.png" id="46_cc5ty"]
+[ext_resource type="Texture2D" uid="uid://13cdqmjt4k5s" path="res://images/zombies/normal/eat_17.png" id="47_37jsi"]
+[ext_resource type="Texture2D" uid="uid://6jpj3k23ieqf" path="res://images/zombies/normal/eat_18.png" id="48_ah5k1"]
+[ext_resource type="Texture2D" uid="uid://da6yoqvf6a87p" path="res://images/zombies/normal/eat_19.png" id="49_pakjf"]
+[ext_resource type="Texture2D" uid="uid://c2m3d1t3sb5mh" path="res://images/zombies/normal/eat_20.png" id="50_8swbc"]
 
 [sub_resource type="Animation" id="Animation_lsw22"]
 resource_name = "zombie_walk"
@@ -64,9 +85,26 @@ tracks/0/keys = {
 "values": [ExtResource("20_i6bxh"), ExtResource("21_6n2sq"), ExtResource("22_smgdu"), ExtResource("23_cnevk"), ExtResource("24_hmetn"), ExtResource("25_xhofa"), ExtResource("26_xct1i"), ExtResource("27_na6x8"), ExtResource("28_m1ayv"), ExtResource("29_0axum")]
 }
 
+[sub_resource type="Animation" id="Animation_xgmi6"]
+resource_name = "zombie_eat"
+length = 11.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("30_0dsqh"), ExtResource("31_gbjcf"), ExtResource("32_f3vb1"), ExtResource("33_frcpo"), ExtResource("34_t2in2"), ExtResource("35_spkde"), ExtResource("36_bburo"), ExtResource("37_a6y3d"), ExtResource("38_jvmsy"), ExtResource("39_vveve"), ExtResource("40_gma3t"), ExtResource("41_edken"), ExtResource("42_7nogm"), ExtResource("43_c0wgm"), ExtResource("44_vmlma"), ExtResource("45_ipftp"), ExtResource("46_cc5ty"), ExtResource("47_37jsi"), ExtResource("48_ah5k1"), ExtResource("49_pakjf"), ExtResource("50_8swbc")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ruld"]
 _data = {
 "zombie_dead": SubResource("Animation_hwnla"),
+"zombie_eat": SubResource("Animation_xgmi6"),
 "zombie_walk": SubResource("Animation_lsw22")
 }
 
@@ -78,7 +116,7 @@ collision_layer = 4
 script = ExtResource("1_pb6cr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_44grr")
+texture = ExtResource("30_0dsqh")
 region_enabled = true
 region_rect = Rect2(22, 0, 144, 144)
 

@@ -4,7 +4,7 @@ var pea_res = preload("res://items/pea.tscn");
 
 var fighting = false;
 var progress = 0;
-
+var life = 20;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -31,3 +31,9 @@ func emit_pea():
 	pea.position = Vector2(30, -15);
 	add_child(pea);
 	pass
+
+func under_attacked(damage):
+	life -= damage;
+	if life <= 0:
+		queue_free();
+	pass;
