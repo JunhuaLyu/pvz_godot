@@ -1,31 +1,38 @@
 extends CharacterBody2D
 
 # 像素/毫秒
-@export var speed = 15;
-
+var walk_speed = 15;
+var speed_scale = 1;
 var state = "walk";
-var life = 600;
+var life = 60;
 var damage = 10;
-var speed_interval = Vector2(-speed, 0);
+var speed_interval = Vector2(-walk_speed, 0);
 var target = null;
+var cold_timer;
+var cold_material;
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	cold_material = ShaderMaterial.new();
+	var file = FileAccess.open("res://effect/ice.gdshader", FileAccess.READ);
+	var code = file.get_as_text();
+	var shader = Shader.new();
+	shader.set_code(code);
+	cold_material.shader = shader;
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if state == "walk":
-		$walkAni.speed_scale = 17 / ( 40 / speed);
+		$walkAni.speed_scale = 17 / ( 40 / walk_speed) * speed_scale;
 	pass
 
 func  _physics_process(delta):
 	if state == "walk":
-		var collide = move_and_collide(speed_interval * delta);
+		var collide = move_and_collide(speed_interval * delta * speed_scale);
 		if collide:
 			to_eating(collide);
 	elif state == "eating":
-		var collide = move_and_collide(speed_interval * delta);
+		var collide = move_and_collide(speed_interval * delta * speed_scale);
 		if !collide:
 			to_walk();
 	pass
@@ -34,14 +41,14 @@ func to_eating(collide):
 	state = "eating"
 	target = collide.get_collider();
 	$walkAni.stop();
-	$walkAni.speed_scale = 8;
+	$walkAni.speed_scale = 8 * speed_scale;
 	$walkAni.play("zombie_eat");
 	pass;	
 	
 func to_walk():
 	state = "walk"
 	$walkAni.stop();
-	$walkAni.speed_scale = 17 / ( 40 / speed);
+	$walkAni.speed_scale = 17 / ( 40 / walk_speed) * speed_scale;
 	$walkAni.play("zombie_walk");
 	pass;	
 	
@@ -52,10 +59,28 @@ func dead():
 	$walkAni.speed_scale = 4;
 	$walkAni.play("zombie_dead");
 	pass;
+	
+func _on_cold_timeout():
+	speed_scale = 1;
+	cold_timer = null;
+	$Sprite2D.material = null;
+	pass;
+	
+func on_effect_cold(effect):
+	speed_scale = 0.3;
+	$Sprite2D.material = cold_material;
+	if cold_timer == null:
+		cold_timer = get_tree().create_timer(2.0);
+		cold_timer.timeout.connect(_on_cold_timeout);
+	else:
+		cold_timer.set_time_left(2.0);
+	pass
 
-func do_hit(damage):
+func under_attacked(damage, effect = null):
 	if life > 0:
 		life -= damage;
+		if effect == "cold":
+			on_effect_cold(effect);
 		if life <= 0:
 			dead();
 	pass

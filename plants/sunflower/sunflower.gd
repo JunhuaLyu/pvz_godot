@@ -16,6 +16,8 @@ func set_active(a):
 	if active != a:
 		progress = 0;
 	active = a;
+	if active:
+		$AnimationPlayer.play("sunflower_normal");
 	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

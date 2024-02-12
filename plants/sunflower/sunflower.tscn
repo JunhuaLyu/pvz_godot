@@ -46,11 +46,10 @@ _data = {
 script = ExtResource("1_3wq2y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("19_vwq1e")
+texture = ExtResource("1_jpofg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_s8eyl")
 }
-autoplay = "sunflower_normal"
 speed_scale = 1.44

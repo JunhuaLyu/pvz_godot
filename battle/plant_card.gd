@@ -16,10 +16,12 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			if event.position.x > position.x and event.position.x < position.x + texture.get_width() and event.position.y > position.y and event.position.y < position.y + texture.get_height() :
+			var local = self.to_local(event.position);
+			if local.x > 0 and local.x < texture.get_width() and local.y > 0 and local.y < texture.get_height() :
 				plant_selected.emit(plant_name);
-				#print("Left button was clicked at ", event.position)
-			
+			#if local.x > position.x and local.x < position.x + texture.get_width() and local.y > position.y and local.y < position.y + texture.get_height() :
+				#plant_selected.emit(plant_name);
+				#print("Left button was clicked at ", event.position)			
 	# Mouse in viewport coordinates.
 	#if event is InputEventMouseButton:
 	#	print("Mouse Click/Unclick at: ", event.position)

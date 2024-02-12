@@ -1,24 +1,18 @@
-extends Area2D
+extends "res://items/pea.gd"
 
-@export var pea_boom_res = preload("res://items/pea_explosion.png");
-
-@export var speed = 200;
-var damage = 10;
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	damage = 5;
+	return super._ready();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position.x += speed * delta;
-	if position.x > 1000:
-		queue_free();
-	pass
+	return super._process(delta);
 
 func _on_body_entered(body):
 	if body.has_method("under_attacked"):
 		if damage > 0:
-			body.under_attacked(damage);
+			body.under_attacked(damage, "cold");
 			damage = 0;
 	speed = 0;
 	$Sprite2D.texture = pea_boom_res;

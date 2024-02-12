@@ -1,24 +1,23 @@
 extends CharacterBody2D
 
-var pea_res = preload("res://items/pea.tscn");
-
+var pea_res = preload("res://items/ice_pea.tscn");
 var fighting = false;
-var active = false;
 var progress = 0;
 var life = 20;
+var active = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 func get_plant_name():
-	return "pea_shooter";
-		
+	return "snow_pea";
+	
 func set_active(a):
 	if active != a:
 		progress = 0;
 	active = a;
 	if active:
-		$AnimationNormal.play("pea_shooter_normal");
+		$AnimatedSprite2D.play();
 	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

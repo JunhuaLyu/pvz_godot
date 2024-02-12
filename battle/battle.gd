@@ -1,6 +1,7 @@
 extends Node2D
 
 var pea_shooter_tscn = preload("res://plants/pea_shooter/pea_shooter.tscn");
+var snow_pea_tscn = preload("res://plants/snow_pea/snow_pea.tscn");
 var sunflower_tscn = preload("res://plants/sunflower/sunflower.tscn");
 var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
 
@@ -83,9 +84,9 @@ func match_plant_field(position):
 		for j in range(5):
 			if position.x > 145 + i * 80 - 30 and position.x < 145 + i * 80 + 30 and position.y > 135 + j * 97 - 40 and position.y < 135 + j * 97 + 40:
 				plant_selected.position = Vector2(145 + i * 80, 135 + j * 97);
+				plant_selected.set_active(true);
 				if plant_selected.get_plant_name() == "sunflower":
 					plant_selected.connect("sunshine_generate", _on_sunshine_generated);
-					plant_selected.set_active(true);
 				return true;
 			# var plant_rect = Sprite2D.new();
 			# plant_rect.texture = load("res://battle/item_bar.png");
@@ -97,7 +98,7 @@ func match_plant_field(position):
 	
 func add_zombie(i):
 	var zombie_normal = zombie_normal_tscn.instantiate();
-	zombie_normal.position = Vector2(145 + 8 * 80, 135 + i * 97 - 24);
+	zombie_normal.position = Vector2(900, 135 + i * 97 - 24);
 	add_child(zombie_normal);
 	pass;
 	
@@ -114,6 +115,8 @@ func get_plant_selected_sprite(plant_name):
 	match plant_name:
 		"pea_shooter":
 			return pea_shooter_tscn.instantiate();
+		"snow_pea":
+			return snow_pea_tscn.instantiate();
 		"sunflower":
 			return sunflower_tscn.instantiate();
 		_:

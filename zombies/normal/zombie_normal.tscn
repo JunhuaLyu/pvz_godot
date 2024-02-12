@@ -51,24 +51,6 @@
 [ext_resource type="Texture2D" uid="uid://da6yoqvf6a87p" path="res://images/zombies/normal/eat_19.png" id="49_pakjf"]
 [ext_resource type="Texture2D" uid="uid://c2m3d1t3sb5mh" path="res://images/zombies/normal/eat_20.png" id="50_8swbc"]
 
-[sub_resource type="Animation" id="Animation_lsw22"]
-resource_name = "zombie_walk"
-length = 17.0
-loop_mode = 1
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("1_44grr"), ExtResource("3_rri8d"), ExtResource("4_4wr46"), ExtResource("5_x8v0h"), ExtResource("6_8wxo8"), ExtResource("7_vu8k2"), ExtResource("8_hvrri"), ExtResource("9_8cidh"), ExtResource("10_3yjrx"), ExtResource("11_8nsr1"), ExtResource("12_dncro"), ExtResource("13_od5aw"), ExtResource("14_g254x"), ExtResource("15_2nj3r"), ExtResource("16_hl106"), ExtResource("17_6wwwd"), ExtResource("18_1mym6"), ExtResource("19_avstb")]
-}
-
 [sub_resource type="Animation" id="Animation_hwnla"]
 resource_name = "zombie_dead"
 length = 10.0
@@ -101,6 +83,24 @@ tracks/0/keys = {
 "values": [ExtResource("30_0dsqh"), ExtResource("31_gbjcf"), ExtResource("32_f3vb1"), ExtResource("33_frcpo"), ExtResource("34_t2in2"), ExtResource("35_spkde"), ExtResource("36_bburo"), ExtResource("37_a6y3d"), ExtResource("38_jvmsy"), ExtResource("39_vveve"), ExtResource("40_gma3t"), ExtResource("41_edken"), ExtResource("42_7nogm"), ExtResource("43_c0wgm"), ExtResource("44_vmlma"), ExtResource("45_ipftp"), ExtResource("46_cc5ty"), ExtResource("47_37jsi"), ExtResource("48_ah5k1"), ExtResource("49_pakjf"), ExtResource("50_8swbc")]
 }
 
+[sub_resource type="Animation" id="Animation_lsw22"]
+resource_name = "zombie_walk"
+length = 17.0
+loop_mode = 1
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_44grr"), ExtResource("3_rri8d"), ExtResource("4_4wr46"), ExtResource("5_x8v0h"), ExtResource("6_8wxo8"), ExtResource("7_vu8k2"), ExtResource("8_hvrri"), ExtResource("9_8cidh"), ExtResource("10_3yjrx"), ExtResource("11_8nsr1"), ExtResource("12_dncro"), ExtResource("13_od5aw"), ExtResource("14_g254x"), ExtResource("15_2nj3r"), ExtResource("16_hl106"), ExtResource("17_6wwwd"), ExtResource("18_1mym6"), ExtResource("19_avstb")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8ruld"]
 _data = {
 "zombie_dead": SubResource("Animation_hwnla"),
@@ -116,7 +116,7 @@ collision_layer = 4
 script = ExtResource("1_pb6cr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("30_0dsqh")
+texture = ExtResource("20_i6bxh")
 region_enabled = true
 region_rect = Rect2(22, 0, 144, 144)
 

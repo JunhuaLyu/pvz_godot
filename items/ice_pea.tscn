@@ -1,0 +1,13 @@
+[gd_scene load_steps=5 format=3 uid="uid://cev812lpcplm"]
+
+[ext_resource type="PackedScene" uid="uid://ygrmmqa3biac" path="res://items/pea.tscn" id="1_t4f26"]
+[ext_resource type="Script" path="res://items/ice_pea.gd" id="2_b6qk1"]
+[ext_resource type="Texture2D" uid="uid://r004kys4gf4e" path="res://images/items/ice_pea_explosion.png" id="2_nqh3f"]
+[ext_resource type="Texture2D" uid="uid://ctonxe4vh63sv" path="res://images/items/ice_pea.png" id="3_pww6x"]
+
+[node name="IcePea" instance=ExtResource("1_t4f26")]
+script = ExtResource("2_b6qk1")
+pea_boom_res = ExtResource("2_nqh3f")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_pww6x")
