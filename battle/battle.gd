@@ -4,6 +4,7 @@ var pea_shooter_tscn = preload("res://plants/pea_shooter/pea_shooter.tscn");
 var snow_pea_tscn = preload("res://plants/snow_pea/snow_pea.tscn");
 var sunflower_tscn = preload("res://plants/sunflower/sunflower.tscn");
 var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
+var zombie_conehead_tscn = preload("res://zombies/zombie_base.tscn");
 
 var plant_selected = null;
 var sunshine_list = [];
@@ -97,7 +98,7 @@ func match_plant_field(position):
 	return false;
 	
 func add_zombie(i):
-	var zombie_normal = zombie_normal_tscn.instantiate();
+	var zombie_normal = zombie_conehead_tscn.instantiate();
 	zombie_normal.position = Vector2(900, 135 + i * 97 - 24);
 	add_child(zombie_normal);
 	pass;
