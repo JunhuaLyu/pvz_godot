@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cncpluxb77heo"]
+[gd_scene load_steps=5 format=3 uid="uid://cncpluxb77heo"]
 
 [ext_resource type="Texture2D" uid="uid://bmfxuxsaypv4m" path="res://battle/PC1.png" id="1_p587s"]
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_rtcwr"]
 [ext_resource type="PackedScene" uid="uid://cjqtoc8dtrrmw" path="res://battle/item_bar.tscn" id="2_7ad22"]
+[ext_resource type="PackedScene" uid="uid://ca8w73ku84sdr" path="res://battle/zombie_panel.tscn" id="4_f6nu1"]
 
 [node name="battle" type="Node2D"]
 script = ExtResource("1_rtcwr")
@@ -13,3 +14,7 @@ centered = false
 offset = Vector2(-150, 0)
 
 [node name="item_bar" parent="." instance=ExtResource("2_7ad22")]
+
+[node name="ZombiePanel" parent="." instance=ExtResource("4_f6nu1")]
+position = Vector2(430, -8)
+scale = Vector2(0.7, 0.7)

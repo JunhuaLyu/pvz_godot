@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://ca8w73ku84sdr"]
+
+[ext_resource type="Script" path="res://battle/zombie_panel.gd" id="1_yc6wa"]
+[ext_resource type="PackedScene" uid="uid://c0qftrxlqjvv7" path="res://battle/zombie_card.tscn" id="2_m3oca"]
+
+[node name="ZombiePanel" type="Node2D"]
+script = ExtResource("1_yc6wa")
+
+[node name="Normal" parent="." instance=ExtResource("2_m3oca")]
+
+[node name="Conehead" parent="." instance=ExtResource("2_m3oca")]
+offset_left = 72.0
+offset_right = 168.0
+
+[node name="Z3" parent="." instance=ExtResource("2_m3oca")]
+offset_left = 144.0
+offset_right = 240.0
+
+[node name="Z4" parent="." instance=ExtResource("2_m3oca")]
+offset_left = 216.0
+offset_right = 312.0
+
+[node name="Z5" parent="." instance=ExtResource("2_m3oca")]
+offset_left = 288.0
+offset_right = 384.0
+
+[node name="Z6" parent="." instance=ExtResource("2_m3oca")]
+offset_left = 360.0
+offset_right = 456.0
+
+[node name="Z7" parent="." instance=ExtResource("2_m3oca")]
+offset_left = 432.0
+offset_right = 528.0
+
+[node name="Z8" parent="." instance=ExtResource("2_m3oca")]
+offset_left = 504.0
+offset_right = 600.0

@@ -9,7 +9,7 @@ var zombie_conehead_tscn = preload("res://zombies/zombie_base.tscn");
 var plant_selected = null;
 var sunshine_list = [];
 var sun_target;
-
+var zombie_selected = null;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$item_bar.connect("plant_selected", _on_plant_select);
@@ -59,16 +59,38 @@ func _input(event):
 			if plant_selected != null and match_plant_field(event.position):
 				plant_selected = null;	
 	elif event is InputEventKey:
-		if event.keycode == Key.KEY_1 and event.pressed == true:
-			add_zombie(0);
-		elif event.keycode == Key.KEY_2 and event.pressed == true:
-			add_zombie(1);
-		elif event.keycode == Key.KEY_3 and event.pressed == true:
-			add_zombie(2);
-		elif event.keycode == Key.KEY_4 and event.pressed == true:
-			add_zombie(3);
-		elif event.keycode == Key.KEY_5 and event.pressed == true:
-			add_zombie(4);
+		if zombie_selected != null:
+			if event.keycode == Key.KEY_1 and event.pressed == true:
+				add_zombie(0);
+			elif event.keycode == Key.KEY_2 and event.pressed == true:
+				add_zombie(1);
+			elif event.keycode == Key.KEY_3 and event.pressed == true:
+				add_zombie(2);
+			elif event.keycode == Key.KEY_4 and event.pressed == true:
+				add_zombie(3);
+			elif event.keycode == Key.KEY_5 and event.pressed == true:
+				add_zombie(4);
+			elif event.keycode == Key.KEY_ESCAPE and event.pressed == true:
+				$ZombiePanel.cancel();
+				zombie_selected = null;
+		else:
+			if event.keycode == Key.KEY_1 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(0);
+			elif event.keycode == Key.KEY_2 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(1);
+			elif event.keycode == Key.KEY_3 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(2);
+			elif event.keycode == Key.KEY_4 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(3);
+			elif event.keycode == Key.KEY_5 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(4);
+			elif event.keycode == Key.KEY_6 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(5);
+			elif event.keycode == Key.KEY_7 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(6);
+			elif event.keycode == Key.KEY_8 and event.pressed == true:
+				zombie_selected = $ZombiePanel.select_zombie(7);
+			pass
 	pass
 
 func _on_sunshine_generated(position):
@@ -89,18 +111,14 @@ func match_plant_field(position):
 				if plant_selected.get_plant_name() == "sunflower":
 					plant_selected.connect("sunshine_generate", _on_sunshine_generated);
 				return true;
-			# var plant_rect = Sprite2D.new();
-			# plant_rect.texture = load("res://battle/item_bar.png");
-			# plant_rect.region_enabled = true;
-			# plant_rect.region_rect = Rect2(140, 0, 60, 60);
-			#plant_rect.position = Vector2(145 + i * 80, 135 + j * 97);
-			#add_child(plant_rect);
 	return false;
 	
 func add_zombie(i):
-	var zombie_normal = zombie_conehead_tscn.instantiate();
-	zombie_normal.position = Vector2(900, 135 + i * 97 - 24);
-	add_child(zombie_normal);
+	var zombie = get_zombie(zombie_selected);
+	zombie.position = Vector2(900, 135 + i * 97 - 18);
+	add_child(zombie);
+	zombie_selected = null;
+	$ZombiePanel.cancel();
 	pass;
 	
 func _on_plant_select(name):
@@ -113,13 +131,31 @@ func _on_plant_select(name):
 	pass
 	
 func get_plant_selected_sprite(plant_name):
+	var plant;
 	match plant_name:
 		"pea_shooter":
-			return pea_shooter_tscn.instantiate();
+			plant = pea_shooter_tscn.instantiate();
 		"snow_pea":
-			return snow_pea_tscn.instantiate();
+			plant = snow_pea_tscn.instantiate();
 		"sunflower":
-			return sunflower_tscn.instantiate();
+			plant = sunflower_tscn.instantiate();
 		_:
 			pass;
+	plant.scale = Vector2(0.8, 0.8);
+	return plant;
+
+func _on_zombie_selected(name):
+	zombie_selected = name;
 	pass
+
+func get_zombie(zombie_name):
+	var zombie;
+	match zombie_name:
+		"normal":
+			zombie = zombie_normal_tscn.instantiate();
+		"conehead":
+			zombie = zombie_conehead_tscn.instantiate();
+		_:
+			zombie = zombie_normal_tscn.instantiate();
+	zombie.scale = Vector2(0.9, 0.9);
+	return zombie;
