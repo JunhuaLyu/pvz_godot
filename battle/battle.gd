@@ -10,6 +10,7 @@ var plant_selected = null;
 var sunshine_list = [];
 var sun_target;
 var zombie_selected = null;
+var _battle_end = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$item_bar.connect("plant_selected", _on_plant_select);
@@ -18,6 +19,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if _battle_end:
+		return;
+	if $CountDown.get_time_left() == 0:
+		battle_end(true);
+		return;
 	sunshine_list = sunshine_list.filter(
 		func(s): 
 			var width = sun_target.x - s.position.x;
@@ -48,6 +54,8 @@ func _process(delta):
 	pass
 
 func _input(event):
+	if _battle_end:
+		return;
 	if event is InputEventMouseMotion and plant_selected != null:
 		plant_selected.position = event.position;
 	if event is InputEventMouseButton:
@@ -108,6 +116,7 @@ func match_plant_field(position):
 			if position.x > 145 + i * 80 - 30 and position.x < 145 + i * 80 + 30 and position.y > 135 + j * 97 - 40 and position.y < 135 + j * 97 + 40:
 				plant_selected.position = Vector2(145 + i * 80, 135 + j * 97);
 				plant_selected.set_active(true);
+				$item_bar.plant_active(plant_selected.get_plant_name());
 				if plant_selected.get_plant_name() == "sunflower":
 					plant_selected.connect("sunshine_generate", _on_sunshine_generated);
 				return true;
@@ -117,11 +126,13 @@ func add_zombie(i):
 	var zombie = get_zombie(zombie_selected);
 	zombie.position = Vector2(900, 135 + i * 97 - 18);
 	add_child(zombie);
+	$ZombiePanel.active_zombie(zombie_selected);
 	zombie_selected = null;
-	$ZombiePanel.cancel();
 	pass;
 	
 func _on_plant_select(name):
+	if _battle_end:
+		return;
 	if plant_selected != null:
 		remove_child(plant_selected);
 	plant_selected = get_plant_selected_sprite(name);
@@ -159,3 +170,16 @@ func get_zombie(zombie_name):
 			zombie = zombie_normal_tscn.instantiate();
 	zombie.scale = Vector2(0.9, 0.9);
 	return zombie;
+
+func battle_end(plant_win):
+	_battle_end = true;
+	$Label.visible = true;
+	if plant_win:
+		$Label.text = "植物胜利!";
+	else:
+		$Label.text = "僵尸胜利!";
+	pass
+
+func _on_zombie_win_line_body_entered(body):
+	battle_end(false);
+	pass # Replace with function body.

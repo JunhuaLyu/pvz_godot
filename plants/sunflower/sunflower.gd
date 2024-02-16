@@ -4,7 +4,8 @@ var active = false;
 var progress = 0;
 
 signal sunshine_generate(position)
-
+# 多少秒产生一次阳光
+var sunshine_generate_speed = 15;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,8 +24,8 @@ func set_active(a):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if active :
-		progress += 1;
-		if progress == 60 * 10:
+		progress += delta;
+		if progress >= sunshine_generate_speed:
 			sunshine_generate.emit(position);
 			progress = 0;
 	pass

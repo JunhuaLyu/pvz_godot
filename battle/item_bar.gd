@@ -3,7 +3,9 @@ extends Node2D
 signal plant_selected(name)
 
 var sun_target;
-var sunshine_count;
+var sunshine_count = 50;
+# 阳光自然增长每秒
+var sunshine_increase_speed = 2;
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	var plant_card = load("res://battle/plant_card.tscn").instantiate();
@@ -31,23 +33,37 @@ func _ready():
 	add_child(plant_card);				
 	
 	sun_target = Vector2(40, 35);
-	sunshine_count = 0;
 	$score.position = Vector2(20, 60);
 	pass # Replace with function body.
 
 func add_sunshine(count):
 	sunshine_count += count;
-	$score.text = String.num_int64(sunshine_count);
 	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$score.text = String.num_int64(sunshine_count);
+	sunshine_count += delta * sunshine_increase_speed;
 	pass
 	
 func get_sunshine_target():
 	return sun_target * self.scale;
 		
 func _on_plant_select(name):
-	print("select " + name);
-	plant_selected.emit(name);
+	var cost = get_plant_cost(name);
+	if cost <= sunshine_count:
+		print("select " + name);
+		plant_selected.emit(name);
+	pass
+
+func get_plant_cost(name):
+	match name:
+		"sunflower": return 50;
+		"pea_shooter": return 100;
+		"snow_pea": return 100;
+		_: return 99999999;
+
+func plant_active(name):
+	var cost = get_plant_cost(name);
+	sunshine_count -= cost;
 	pass

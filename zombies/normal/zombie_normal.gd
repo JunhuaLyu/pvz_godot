@@ -4,7 +4,7 @@ extends CharacterBody2D
 var walk_speed = 10;
 var speed_scale = 1;
 var state = "walk";
-var life = 60;
+var life = 100;
 var damage = 10;
 var speed_interval = Vector2(-walk_speed, 0);
 var target = null;

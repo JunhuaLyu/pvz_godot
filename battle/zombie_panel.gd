@@ -4,17 +4,10 @@ var cards;
 
 var select_card = null;
 var selected_material;
-
+var energy = 0;
+var energy_speed = 5;
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	selected_material = ShaderMaterial.new();
-	var file = FileAccess.open("res://effect/on_fire.gdshader", FileAccess.READ);
-	var code = file.get_as_text();
-	var shader = Shader.new();
-	shader.set_code(code);
-	selected_material.shader = shader;
-
-
 	$Normal.zombie_name = "normal";
 	$Conehead/Sprite2D.texture = load("res://images/zombies/conehead/conehead_0.png");
 	$Conehead/Sprite2D.region_rect = Rect2(72,20,64,64);
@@ -33,6 +26,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	$energy_region/Label.text = String.num_uint64(energy);
+	energy += energy_speed * delta;
 	pass
 
 func cancel():
@@ -40,7 +35,22 @@ func cancel():
 	select_card = null;
 	pass;
 
+func active_zombie(name):
+	energy -= get_zombie_energy(name);
+	cancel();
+	pass;
+
 func select_zombie(i):
+	var cost = get_zombie_energy(cards[i].zombie_name);
+	if cost > energy:
+		return null;
+
 	select_card = cards[i];
 	select_card.use_parent_material = false;
 	return select_card.zombie_name;
+
+func get_zombie_energy(name):
+	match name:
+		"normal": return 50;
+		"conehead": return 100;
+		_: return 99999;
