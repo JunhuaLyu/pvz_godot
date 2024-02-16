@@ -1,17 +1,18 @@
 extends CharacterBody2D
 
 # 像素/毫秒
-var walk_speed = 10;
+@export var walk_speed = 10;
 var speed_scale = 1;
 var state = "walk";
-var life = 200;
+@export var life = 10;
 var damage = 10;
-var speed_interval = Vector2(-walk_speed, 0);
+var speed_interval = Vector2(0, 0);
 var target = null;
 var cold_timer;
 var cold_material;
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed_interval = Vector2(-walk_speed, 0);
 	cold_material = ShaderMaterial.new();
 	var file = FileAccess.open("res://effect/ice.gdshader", FileAccess.READ);
 	var code = file.get_as_text();

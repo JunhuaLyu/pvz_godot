@@ -4,20 +4,47 @@ var cards;
 
 var select_card = null;
 var selected_material;
-var energy = 0;
+var energy = 1000;
 var energy_speed = 5;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Normal.zombie_name = "normal";
+	
+	# 路障僵尸
 	$Conehead/Sprite2D.texture = load("res://images/zombies/conehead/conehead_0.png");
 	$Conehead/Sprite2D.region_rect = Rect2(72,20,64,64);
-	$Conehead/NumberSprite/Label.text = "2";
 	$Conehead.zombie_name = "conehead";
 	$Conehead/Label.text = "100";
+	$Conehead/NumberSprite/Label.text = "2";
+	
+	# 铁桶僵尸
+	$Z3/Sprite2D.texture = load("res://images/zombies/buckethead/buckethead_0.png");
+	$Z3/Sprite2D.region_rect = Rect2(58,4,64,64);
+	$Z3.zombie_name = "buckethead";
+	$Z3/Label.text = String.num_uint64(get_zombie_energy($Z3.zombie_name));
 	$Z3/NumberSprite/Label.text = "3";
+	
+	# 铁门僵尸
+	$Z4/Sprite2D.texture = load("res://images/zombies/door/door_0.png");
+	$Z4/Sprite2D.region_rect = Rect2(48,24,64,64);
+	$Z4.zombie_name = "door";
+	$Z4/Label.text = String.num_uint64(get_zombie_energy($Z4.zombie_name));
 	$Z4/NumberSprite/Label.text = "4";
+	
+	# 旗子僵尸
+	$Z5/Sprite2D.texture = load("res://images/zombies/flag/flag_0.png");
+	$Z5/Sprite2D.region_rect = Rect2(58,4,64,64);
+	$Z5.zombie_name = "flag";
+	$Z5/Label.text = String.num_uint64(get_zombie_energy($Z5.zombie_name));
 	$Z5/NumberSprite/Label.text = "5";
+	
+	# 橄榄球僵尸
+	$Z6/Sprite2D.texture = load("res://images/zombies/football/football_0.png");
+	$Z6/Sprite2D.region_rect = Rect2(48,4,64,64);
+	$Z6.zombie_name = "football";
+	$Z6/Label.text = String.num_uint64(get_zombie_energy($Z6.zombie_name));
 	$Z6/NumberSprite/Label.text = "6";
+	
 	$Z7/NumberSprite/Label.text = "7";
 	$Z8/NumberSprite/Label.text = "8";
 	cards = [$Normal, $Conehead, $Z3, $Z4, $Z5, $Z6, $Z7, $Z8];
@@ -53,4 +80,8 @@ func get_zombie_energy(name):
 	match name:
 		"normal": return 50;
 		"conehead": return 100;
+		"buckethead": return 200;
+		"flag": return 200;
+		"door": return 200;
+		"football": return 500;
 		_: return 99999;

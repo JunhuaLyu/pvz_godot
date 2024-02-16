@@ -1,0 +1,143 @@
+[gd_scene load_steps=31 format=3 uid="uid://d3dsbutm5satj"]
+
+[ext_resource type="PackedScene" uid="uid://csm320hikmlyu" path="res://zombies/zombie_base.tscn" id="1_7ch04"]
+[ext_resource type="Texture2D" uid="uid://vwfki6u2b1t2" path="res://images/zombies/football/dead_0.png" id="2_44sg6"]
+[ext_resource type="Texture2D" uid="uid://vrf2c40sbwxy" path="res://images/zombies/football/dead_1.png" id="3_0w2cf"]
+[ext_resource type="Texture2D" uid="uid://coybp7lmoxcgs" path="res://images/zombies/football/dead_2.png" id="4_rnfaw"]
+[ext_resource type="Texture2D" uid="uid://d0bb3lfs741uw" path="res://images/zombies/football/dead_3.png" id="5_tn6vv"]
+[ext_resource type="Texture2D" uid="uid://bakcmrbpq8p7p" path="res://images/zombies/football/dead_4.png" id="6_0nv1u"]
+[ext_resource type="Texture2D" uid="uid://d2n88twqpbp1h" path="res://images/zombies/football/dead_5.png" id="7_8us2v"]
+[ext_resource type="Texture2D" uid="uid://wjrxbvq7q7rj" path="res://images/zombies/football/dead_6.png" id="8_qm0xp"]
+[ext_resource type="Texture2D" uid="uid://ctst0rvcyak5r" path="res://images/zombies/football/eating_0.png" id="9_dgnio"]
+[ext_resource type="Texture2D" uid="uid://cqfkum0oc7jxp" path="res://images/zombies/football/eating_1.png" id="10_r3kbt"]
+[ext_resource type="Texture2D" uid="uid://caflk3dgxxi7m" path="res://images/zombies/football/eating_2.png" id="11_n3d7h"]
+[ext_resource type="Texture2D" uid="uid://i766o0awblab" path="res://images/zombies/football/eating_3.png" id="12_ljlun"]
+[ext_resource type="Texture2D" uid="uid://bk17mt6effhfd" path="res://images/zombies/football/eating_4.png" id="13_v6l6j"]
+[ext_resource type="Texture2D" uid="uid://p31bx47yyrd" path="res://images/zombies/football/eating_5.png" id="14_mb5p2"]
+[ext_resource type="Texture2D" uid="uid://db5xirvd5gr1l" path="res://images/zombies/football/eating_6.png" id="15_ai6g8"]
+[ext_resource type="Texture2D" uid="uid://d1e4ft0c44l5w" path="res://images/zombies/football/eating_7.png" id="16_4grk2"]
+[ext_resource type="Texture2D" uid="uid://ct6kf05s5i52p" path="res://images/zombies/football/eating_8.png" id="17_hw3oe"]
+[ext_resource type="Texture2D" uid="uid://l5j2hjmthc1b" path="res://images/zombies/football/eating_9.png" id="18_7weo7"]
+[ext_resource type="Texture2D" uid="uid://b1o0oo1tusybj" path="res://images/zombies/football/football_0.png" id="19_0g6n2"]
+[ext_resource type="Texture2D" uid="uid://cyviuy0r2uepc" path="res://images/zombies/football/football_1.png" id="20_3puj4"]
+[ext_resource type="Texture2D" uid="uid://8r8r0rwwbpbk" path="res://images/zombies/football/football_2.png" id="21_nboe4"]
+[ext_resource type="Texture2D" uid="uid://b108sxddiqkqs" path="res://images/zombies/football/football_3.png" id="22_rfxpc"]
+[ext_resource type="Texture2D" uid="uid://xit1ssmwx8j" path="res://images/zombies/football/football_4.png" id="23_kyj8k"]
+[ext_resource type="Texture2D" uid="uid://k3f0lwyebnbd" path="res://images/zombies/football/football_5.png" id="24_re07h"]
+[ext_resource type="Texture2D" uid="uid://ce2ag8swr3mjq" path="res://images/zombies/football/football_6.png" id="25_13qxk"]
+[ext_resource type="Texture2D" uid="uid://b5afteo3r5hoi" path="res://images/zombies/football/football_7.png" id="26_i8g3k"]
+[ext_resource type="Texture2D" uid="uid://dwyuweemfxk8v" path="res://images/zombies/football/football_8.png" id="27_qsato"]
+[ext_resource type="Texture2D" uid="uid://b1bravloipfpe" path="res://images/zombies/football/football_9.png" id="28_au3a0"]
+[ext_resource type="Texture2D" uid="uid://danfndp6uj2c4" path="res://images/zombies/football/football_10.png" id="29_hmfh6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oey73"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_44sg6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0w2cf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rnfaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_tn6vv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0nv1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8us2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qm0xp")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_dgnio")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r3kbt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_n3d7h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ljlun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_v6l6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_mb5p2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ai6g8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_4grk2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_hw3oe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_7weo7")
+}],
+"loop": false,
+"name": &"eating",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_0g6n2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_3puj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_nboe4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_rfxpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_kyj8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_re07h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_13qxk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_i8g3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_qsato")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_au3a0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_hmfh6")
+}],
+"loop": false,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="ZombieBase" instance=ExtResource("1_7ch04")]
+walk_speed = 20
+life = 1000
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_oey73")
+animation = &"walk"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

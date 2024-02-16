@@ -3,7 +3,7 @@ extends Node2D
 signal plant_selected(name)
 
 var sun_target;
-var sunshine_count = 50;
+var sunshine_count = 500;
 # 阳光自然增长每秒
 var sunshine_increase_speed = 2;
 # Called when the node enters the scene tree for the first time.

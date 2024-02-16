@@ -4,7 +4,11 @@ var pea_shooter_tscn = preload("res://plants/pea_shooter/pea_shooter.tscn");
 var snow_pea_tscn = preload("res://plants/snow_pea/snow_pea.tscn");
 var sunflower_tscn = preload("res://plants/sunflower/sunflower.tscn");
 var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
-var zombie_conehead_tscn = preload("res://zombies/zombie_base.tscn");
+var zombie_conehead_tscn = preload("res://zombies/zombie_conehead.tscn");
+var zombie_buckethead_tscn = preload("res://zombies/zombie_buckethead.tscn");
+var zombie_flag_tscn = preload("res://zombies/zombie_flag.tscn");
+var zombie_door_tscn = preload("res://zombies/zombie_door.tscn");
+var zombie_football_tscn = preload("res://zombies/zombie_football.tscn");
 
 var plant_selected = null;
 var sunshine_list = [];
@@ -166,6 +170,14 @@ func get_zombie(zombie_name):
 			zombie = zombie_normal_tscn.instantiate();
 		"conehead":
 			zombie = zombie_conehead_tscn.instantiate();
+		"buckethead":
+			zombie = zombie_buckethead_tscn.instantiate();
+		"flag":
+			zombie = zombie_flag_tscn.instantiate();
+		"door":
+			zombie = zombie_door_tscn.instantiate();
+		"football":
+			zombie = zombie_football_tscn.instantiate();
 		_:
 			zombie = zombie_normal_tscn.instantiate();
 	zombie.scale = Vector2(0.9, 0.9);
@@ -182,4 +194,5 @@ func battle_end(plant_win):
 
 func _on_zombie_win_line_body_entered(body):
 	battle_end(false);
+	$CountDown.count_stop();
 	pass # Replace with function body.
