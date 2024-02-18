@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cncpluxb77heo"]
+[gd_scene load_steps=16 format=3 uid="uid://cncpluxb77heo"]
 
 [ext_resource type="Texture2D" uid="uid://bmfxuxsaypv4m" path="res://battle/PC1.png" id="1_p587s"]
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_rtcwr"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ca8w73ku84sdr" path="res://battle/zombie_panel.tscn" id="4_f6nu1"]
 [ext_resource type="Script" path="res://battle/CountDown.gd" id="5_ldj84"]
 [ext_resource type="Texture2D" uid="uid://bow4nude2ofop" path="res://images/items/zombies_coming.png" id="6_yxh6a"]
+[ext_resource type="Texture2D" uid="uid://cno62h8vw46tp" path="res://images/items/slot.png" id="7_ljnxj"]
+[ext_resource type="Texture2D" uid="uid://bhfneq2kc62w8" path="res://images/items/shovel.png" id="8_wvbyi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x8a60"]
 font_size = 21
@@ -56,6 +58,9 @@ size = Vector2(20, 600)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcuyb"]
 size = Vector2(80, 90)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4dp3a"]
+radius = 24.0
 
 [node name="battle" type="Node2D"]
 script = ExtResource("1_rtcwr")
@@ -118,5 +123,24 @@ offset_top = 266.0
 offset_right = 736.0
 offset_bottom = 334.0
 texture = ExtResource("6_yxh6a")
+
+[node name="ShovelSlot" type="TextureRect" parent="."]
+offset_top = 69.0
+offset_right = 48.0
+offset_bottom = 117.0
+texture = ExtResource("7_ljnxj")
+
+[node name="Shovel" type="Sprite2D" parent="ShovelSlot"]
+position = Vector2(24, 22)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_wvbyi")
+
+[node name="Detect" type="Area2D" parent="ShovelSlot/Shovel"]
+position = Vector2(-20, 20)
+scale = Vector2(1.66667, 1.66667)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShovelSlot/Shovel/Detect"]
+shape = SubResource("CircleShape2D_4dp3a")
 
 [connection signal="body_entered" from="zombie_win_line" to="." method="_on_zombie_win_line_body_entered"]

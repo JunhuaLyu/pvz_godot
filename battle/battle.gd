@@ -4,7 +4,7 @@ var pea_shooter_tscn = preload("res://plants/pea_shooter/pea_shooter.tscn");
 var snow_pea_tscn = preload("res://plants/snow_pea/snow_pea.tscn");
 var sunflower_tscn = preload("res://plants/sunflower/sunflower.tscn");
 var wall_nut_tscn = preload("res://plants/wall_nut.tscn");
-
+var jalapeno_tscn = preload("res://plants/jalapeno.tscn");
 
 var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
 var zombie_conehead_tscn = preload("res://zombies/zombie_conehead.tscn");
@@ -18,7 +18,7 @@ var sunshine_list = [];
 var sun_target;
 var zombie_selected = null;
 var _battle_end = false;
-
+var _shovel = null;
 var _phase = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,17 +66,27 @@ func _process(delta):
 func _input(event):
 	if _battle_end:
 		return;
-	if event is InputEventMouseMotion and plant_selected != null:
-		plant_selected.position = event.position;
-		$plant_detect.position = event.position;
+	if event is InputEventMouseMotion:
+		if plant_selected != null:
+			plant_selected.position = event.position;
+			$plant_detect.position = event.position;
+		elif _shovel != null:
+			_shovel.position = event.position;
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
-			if plant_selected != null:
-				remove_child(plant_selected);
-				plant_selected = null;	
+			plant_selected_cancel();
+			shovel_release();
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if plant_selected != null and match_plant_field(event.position):
-				plant_selected = null;	
+				plant_selected = null;
+			elif _shovel != null:
+				if _shovel.get_child(0).has_overlapping_bodies():
+					for body in _shovel.get_child(0).get_overlapping_bodies():
+						if body.has_method("get_plant_name"):
+							body.queue_free();
+			elif $ShovelSlot.get_global_rect().has_point(event.position):
+				plant_selected_cancel();
+				shovel_pick(event.position);
 	elif event is InputEventKey:
 		if zombie_selected != null:
 			if event.keycode == Key.KEY_1 and event.pressed == true:
@@ -120,6 +130,28 @@ func _on_sunshine_generated(position):
 	add_child(sunshine);
 	sunshine_list.append(sunshine);
 	pass
+	
+func plant_selected_cancel():
+	if plant_selected != null:
+		remove_child(plant_selected);
+		plant_selected = null;	
+	pass
+
+func shovel_pick(position):
+	if _shovel == null:
+		_shovel = $ShovelSlot/Shovel;
+		_shovel.get_parent().remove_child(_shovel);
+		self.add_child(_shovel);
+		_shovel.position = position;
+	pass
+
+func shovel_release():
+	if _shovel != null:
+		remove_child(_shovel);
+		$ShovelSlot.add_child(_shovel);
+		_shovel.position = Vector2(24, 22);
+		_shovel = null;	
+	pass
 
 func match_plant_field(position):
 	if $plant_detect.has_overlapping_bodies():
@@ -152,6 +184,7 @@ func _on_plant_select(name):
 	if plant_selected != null:
 		plant_selected.position = Input.get_last_mouse_velocity();
 		add_child(plant_selected);
+		shovel_release();
 	pass
 	
 func get_plant_selected_sprite(plant_name):
@@ -165,6 +198,8 @@ func get_plant_selected_sprite(plant_name):
 			plant = sunflower_tscn.instantiate();
 		"wall_nut":
 			plant = wall_nut_tscn.instantiate();
+		"jalapeno":
+			plant = jalapeno_tscn.instantiate();
 		_:
 			pass;
 	plant.scale = Vector2(0.8, 0.8);
@@ -218,10 +253,18 @@ func check_phase():
 func to_phase(phase):
 	_phase = phase;
 	match phase:
-		1: $ZombiePanel.add_energy(200);
-		2: $ZombiePanel.add_energy(400);
-		3: $ZombiePanel.add_energy(700);
-		4: $ZombiePanel.add_energy(1200);
+		1: 
+			$ZombiePanel.add_energy(200);
+			$ZombiePanel.energy_speed = 8;
+		2: 
+			$ZombiePanel.add_energy(400);
+			$ZombiePanel.energy_speed = 12;
+		3: 
+			$ZombiePanel.add_energy(700);
+			$ZombiePanel.energy_speed = 18;
+		4: 
+			$ZombiePanel.add_energy(1200);
+			$ZombiePanel.energy_speed = 25;
 		_: return;
 	$ZombiesComingRect.visible = true;
 	await get_tree().create_timer(1).timeout;

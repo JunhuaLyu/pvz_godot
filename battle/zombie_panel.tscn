@@ -13,7 +13,7 @@
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8q52a"]
 noise = SubResource("FastNoiseLite_0oovu")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_m5wek"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4a0yr"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -21,7 +21,7 @@ shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6ydtl"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qjh36"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -29,7 +29,7 @@ shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5mwcl"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n0wag"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -37,7 +37,7 @@ shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_pfnii"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ir66d"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -45,7 +45,7 @@ shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_okhru"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_brqr6"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -53,7 +53,7 @@ shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_w3ipo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iqu7r"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -61,7 +61,7 @@ shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gb64l"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gk4g0"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -69,7 +69,7 @@ shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xt5n"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8471d"]
 resource_local_to_scene = true
 shader = ExtResource("6_neiqb")
 shader_parameter/noise_speed = 0.84
@@ -161,7 +161,7 @@ texture = ExtResource("4_kqkuv")
 flip_h = true
 
 [node name="Normal" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_m5wek")
+material = SubResource("ShaderMaterial_4a0yr")
 offset_left = 2.0
 offset_top = -6.0
 offset_right = 98.0
@@ -169,7 +169,7 @@ offset_bottom = 114.0
 scale = Vector2(0.8, 0.8)
 
 [node name="Conehead" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_6ydtl")
+material = SubResource("ShaderMaterial_qjh36")
 offset_left = 62.0
 offset_top = -6.0
 offset_right = 158.0
@@ -177,7 +177,7 @@ offset_bottom = 114.0
 scale = Vector2(0.8, 0.8)
 
 [node name="Z3" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_5mwcl")
+material = SubResource("ShaderMaterial_n0wag")
 offset_left = 122.0
 offset_top = -6.0
 offset_right = 218.0
@@ -185,7 +185,7 @@ offset_bottom = 114.0
 scale = Vector2(0.8, 0.8)
 
 [node name="Z4" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_pfnii")
+material = SubResource("ShaderMaterial_ir66d")
 offset_left = 182.0
 offset_top = -6.0
 offset_right = 278.0
@@ -193,7 +193,7 @@ offset_bottom = 114.0
 scale = Vector2(0.8, 0.8)
 
 [node name="Z5" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_okhru")
+material = SubResource("ShaderMaterial_brqr6")
 offset_left = 242.0
 offset_top = -6.0
 offset_right = 338.0
@@ -201,7 +201,7 @@ offset_bottom = 114.0
 scale = Vector2(0.8, 0.8)
 
 [node name="Z6" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_w3ipo")
+material = SubResource("ShaderMaterial_iqu7r")
 offset_left = 302.0
 offset_top = -6.0
 offset_right = 398.0
@@ -209,7 +209,7 @@ offset_bottom = 114.0
 scale = Vector2(0.8, 0.8)
 
 [node name="Z7" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_gb64l")
+material = SubResource("ShaderMaterial_gk4g0")
 offset_left = 362.0
 offset_top = -6.0
 offset_right = 458.0
@@ -217,7 +217,7 @@ offset_bottom = 114.0
 scale = Vector2(0.8, 0.8)
 
 [node name="Z8" parent="." instance=ExtResource("2_m3oca")]
-material = SubResource("ShaderMaterial_1xt5n")
+material = SubResource("ShaderMaterial_8471d")
 offset_left = 422.0
 offset_top = -6.0
 offset_right = 518.0

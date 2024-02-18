@@ -1,0 +1,53 @@
+[gd_scene load_steps=12 format=3 uid="uid://0mllpcqwi04u"]
+
+[ext_resource type="PackedScene" uid="uid://cqcje52ladpr3" path="res://plants/plant_base.tscn" id="1_evjpu"]
+[ext_resource type="Script" path="res://plants/jalapeno.gd" id="2_nxou3"]
+[ext_resource type="Texture2D" uid="uid://c4wtsmeh6p1rx" path="res://images/plants/jalapeno/jalapeno_0.png" id="3_rkx5d"]
+[ext_resource type="Texture2D" uid="uid://do4gbm36dmiyr" path="res://images/plants/jalapeno/jalapeno_1.png" id="4_nil5n"]
+[ext_resource type="Texture2D" uid="uid://b23xnrmit32s4" path="res://images/plants/jalapeno/jalapeno_2.png" id="5_g2tr8"]
+[ext_resource type="Texture2D" uid="uid://oo2eaphs2dbt" path="res://images/plants/jalapeno/jalapeno_3.png" id="6_um0el"]
+[ext_resource type="Texture2D" uid="uid://ccolw0gayeetm" path="res://images/plants/jalapeno/jalapeno_4.png" id="7_kl6ip"]
+[ext_resource type="Texture2D" uid="uid://cveopgf44ihfb" path="res://images/plants/jalapeno/jalapeno_5.png" id="8_r5dll"]
+[ext_resource type="Texture2D" uid="uid://c56t1sfcra1cv" path="res://images/plants/jalapeno/jalapeno_6.png" id="9_fr6hx"]
+[ext_resource type="Texture2D" uid="uid://id7b1n4v5lb3" path="res://images/plants/jalapeno/jalapeno_7.png" id="10_hfq8h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yb01v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rkx5d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nil5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g2tr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_um0el")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kl6ip")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_r5dll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fr6hx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_hfq8h")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="PlantBase" instance=ExtResource("1_evjpu")]
+script = ExtResource("2_nxou3")
+plant_name = "jalapeno"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_yb01v")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

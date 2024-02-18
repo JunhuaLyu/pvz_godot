@@ -55,6 +55,19 @@ func _ready():
 	add_child(plant_card);
 	cards[name] = plant_card;
 	
+	plant_card = card_tscn.instantiate();
+	plant_card.position = Vector2(80 + 4 * 54, 10);
+	card_sprite = Sprite2D.new();
+	card_sprite.texture = load("res://images/plants/jalapeno/jalapeno_0.png");
+	card_sprite.offset = Vector2(42, 40);
+	card_sprite.scale = Vector2(0.6, 0.6);
+	plant_card.plant_cooldown = 50.0;
+	name = "jalapeno";
+	plant_card.set_plant(name, card_sprite, get_plant_cost(name));
+	plant_card.connect("plant_selected", _on_plant_select);
+	add_child(plant_card);
+	cards[name] = plant_card;
+	
 	sun_target = Vector2(40, 35);
 	pass # Replace with function body.
 
@@ -84,6 +97,7 @@ func get_plant_cost(name):
 		"pea_shooter": return 100;
 		"snow_pea": return 175;
 		"wall_nut": return 50;
+		"jalapeno": return 125;
 		_: return 99999999;
 
 func plant_active(name):

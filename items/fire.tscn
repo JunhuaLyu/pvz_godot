@@ -1,0 +1,61 @@
+[gd_scene load_steps=12 format=3 uid="uid://ckhku4jab803f"]
+
+[ext_resource type="Script" path="res://items/fire.gd" id="1_taw4j"]
+[ext_resource type="Texture2D" uid="uid://c8qt5pkke3338" path="res://images/plants/jalapeno/fire_0.png" id="1_vt52i"]
+[ext_resource type="Texture2D" uid="uid://bwgod3xvl5ppf" path="res://images/plants/jalapeno/fire_1.png" id="2_ya4gj"]
+[ext_resource type="Texture2D" uid="uid://pasrdbojiewl" path="res://images/plants/jalapeno/fire_2.png" id="3_fonqj"]
+[ext_resource type="Texture2D" uid="uid://wsb0sn4q87fd" path="res://images/plants/jalapeno/fire_3.png" id="4_ftpxj"]
+[ext_resource type="Texture2D" uid="uid://cw43ng4d7qbtp" path="res://images/plants/jalapeno/fire_4.png" id="5_cq0q2"]
+[ext_resource type="Texture2D" uid="uid://buajhggkvnups" path="res://images/plants/jalapeno/fire_5.png" id="6_6cvo4"]
+[ext_resource type="Texture2D" uid="uid://cp3s7n8s4qgy7" path="res://images/plants/jalapeno/fire_6.png" id="7_3fcbf"]
+[ext_resource type="Texture2D" uid="uid://d1ksgxag1ph5k" path="res://images/plants/jalapeno/fire_7.png" id="8_islvm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1p3n"]
+size = Vector2(900, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dt1ke"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vt52i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ya4gj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fonqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ftpxj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cq0q2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6cvo4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_3fcbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_islvm")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Fire" type="Area2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_taw4j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_f1p3n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_dt1ke")
+autoplay = "default"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
