@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cncpluxb77heo"]
+[gd_scene load_steps=17 format=3 uid="uid://cncpluxb77heo"]
 
 [ext_resource type="Texture2D" uid="uid://bmfxuxsaypv4m" path="res://battle/PC1.png" id="1_p587s"]
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_rtcwr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bow4nude2ofop" path="res://images/items/zombies_coming.png" id="6_yxh6a"]
 [ext_resource type="Texture2D" uid="uid://cno62h8vw46tp" path="res://images/items/slot.png" id="7_ljnxj"]
 [ext_resource type="Texture2D" uid="uid://bhfneq2kc62w8" path="res://images/items/shovel.png" id="8_wvbyi"]
+[ext_resource type="PackedScene" uid="uid://c2eyf2yoqhpgr" path="res://items/fog.tscn" id="9_gsred"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x8a60"]
 font_size = 21
@@ -77,11 +78,14 @@ scale = Vector2(0.79, 0.79)
 position = Vector2(450, 0)
 scale = Vector2(0.79, 0.79)
 
+[node name="BattleRect" type="Node2D" parent="."]
+
 [node name="CountDown" type="Label" parent="."]
-offset_left = 410.0
-offset_top = 570.0
-offset_right = 490.0
-offset_bottom = 600.0
+offset_left = 330.0
+offset_top = 270.0
+offset_right = 410.0
+offset_bottom = 300.0
+scale = Vector2(3, 3)
 label_settings = SubResource("LabelSettings_x8a60")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -142,5 +146,9 @@ collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShovelSlot/Shovel/Detect"]
 shape = SubResource("CircleShape2D_4dp3a")
+
+[node name="Fog" parent="." instance=ExtResource("9_gsred")]
+visible = false
+position = Vector2(65, 49)
 
 [connection signal="body_entered" from="zombie_win_line" to="." method="_on_zombie_win_line_body_entered"]

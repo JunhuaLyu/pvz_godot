@@ -42,6 +42,10 @@ func _ready():
 	$Z6/NumberSprite/Label.text = "6";
 	
 	$Z7/NumberSprite/Label.text = "7";
+	
+	# 雾
+	$Z8/ImageRect.texture = load("res://images/items/fog_mini.png");
+	$Z8/Label.text = String.num_uint64(get_zombie_energy($Z8.zombie_name));
 	$Z8/NumberSprite/Label.text = "8";
 	cards = [$Normal, $Conehead, $Z3, $Z4, $Z5, $Z6, $Z7, $Z8];
 	pass # Replace with function body.
@@ -89,6 +93,7 @@ func get_zombie_energy(name):
 		"flag": return 200;
 		"door": return 200;
 		"football": return 500;
+		"fog": return 100;
 		_: return 99999;
 		
 func get_card_by_name(name):

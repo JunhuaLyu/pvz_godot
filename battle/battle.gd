@@ -134,7 +134,7 @@ func _on_sunshine_generated(position):
 	
 func plant_selected_cancel():
 	if plant_selected != null:
-		remove_child(plant_selected);
+		$BattleRect.remove_child(plant_selected);
 		plant_selected = null;	
 	pass
 
@@ -169,9 +169,18 @@ func match_plant_field(position):
 	return false;
 	
 func add_zombie(i):
+	if zombie_selected == "fog":
+		$Fog.visible = true;
+		$BattleRect.visible = false;
+		$ZombiePanel.active_zombie(zombie_selected);
+		zombie_selected = null;
+		await get_tree().create_timer(20).timeout;
+		$Fog.visible = false;
+		$BattleRect.visible = true;
+		return;
 	var zombie = get_zombie(zombie_selected);
 	zombie.position = Vector2(900, 135 + i * 97 - 18);
-	add_child(zombie);
+	$BattleRect.add_child(zombie);
 	$ZombiePanel.active_zombie(zombie_selected);
 	zombie_selected = null;
 	pass;
@@ -180,11 +189,11 @@ func _on_plant_select(name):
 	if _battle_end:
 		return;
 	if plant_selected != null:
-		remove_child(plant_selected);
+		$BattleRect.remove_child(plant_selected);
 	plant_selected = get_plant_selected_sprite(name);
 	if plant_selected != null:
 		plant_selected.position = Input.get_last_mouse_velocity();
-		add_child(plant_selected);
+		$BattleRect.add_child(plant_selected);
 		shovel_release();
 	pass
 	

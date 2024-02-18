@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2eyf2yoqhpgr"]
+
+[ext_resource type="Texture2D" uid="uid://c5bbx1skeu32w" path="res://images/items/fog0.png" id="1_ru247"]
+
+[node name="Fog" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 838.0
+offset_bottom = 558.0
+texture = ExtResource("1_ru247")
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 117.0
+offset_top = 93.0
+offset_right = 753.0
+offset_bottom = 444.0
+texture = ExtResource("1_ru247")
+stretch_mode = 1
