@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c6w3vdqrqujf8"]
+[gd_scene load_steps=23 format=3 uid="uid://c6w3vdqrqujf8"]
 
 [ext_resource type="Script" path="res://plants/sunflower/sunflower.gd" id="1_3wq2y"]
 [ext_resource type="Texture2D" uid="uid://y1325egh0kxf" path="res://plants/sunflower/sunflower_1.png" id="1_jpofg"]
@@ -42,7 +42,10 @@ _data = {
 "sunflower_normal": SubResource("Animation_fwy8y")
 }
 
-[node name="Sunflower" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vidpr"]
+
+[node name="Sunflower" type="CharacterBody2D"]
+collision_mask = 0
 script = ExtResource("1_3wq2y")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -53,3 +56,7 @@ libraries = {
 "": SubResource("AnimationLibrary_s8eyl")
 }
 speed_scale = 1.44
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vidpr")
+disabled = true

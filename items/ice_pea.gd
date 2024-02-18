@@ -2,7 +2,7 @@ extends "res://items/pea.gd"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	damage = 5;
+	damage = 10;
 	return super._ready();
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

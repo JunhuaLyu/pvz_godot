@@ -6,41 +6,37 @@ var select_card = null;
 var selected_material;
 var energy = 1000;
 var energy_speed = 5;
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Normal.zombie_name = "normal";
 	
 	# 路障僵尸
-	$Conehead/Sprite2D.texture = load("res://images/zombies/conehead/conehead_0.png");
-	$Conehead/Sprite2D.region_rect = Rect2(72,20,64,64);
+	$Conehead/ImageRect.texture = load("res://images/zombies/conehead/mini.png");
 	$Conehead.zombie_name = "conehead";
 	$Conehead/Label.text = "100";
 	$Conehead/NumberSprite/Label.text = "2";
 	
 	# 铁桶僵尸
-	$Z3/Sprite2D.texture = load("res://images/zombies/buckethead/buckethead_0.png");
-	$Z3/Sprite2D.region_rect = Rect2(58,4,64,64);
+	$Z3/ImageRect.texture = load("res://images/zombies/buckethead/mini.png");
 	$Z3.zombie_name = "buckethead";
 	$Z3/Label.text = String.num_uint64(get_zombie_energy($Z3.zombie_name));
 	$Z3/NumberSprite/Label.text = "3";
 	
 	# 铁门僵尸
-	$Z4/Sprite2D.texture = load("res://images/zombies/door/door_0.png");
-	$Z4/Sprite2D.region_rect = Rect2(48,24,64,64);
+	$Z4/ImageRect.texture = load("res://images/zombies/door/mini.png");
 	$Z4.zombie_name = "door";
 	$Z4/Label.text = String.num_uint64(get_zombie_energy($Z4.zombie_name));
 	$Z4/NumberSprite/Label.text = "4";
 	
 	# 旗子僵尸
-	$Z5/Sprite2D.texture = load("res://images/zombies/flag/flag_0.png");
-	$Z5/Sprite2D.region_rect = Rect2(58,4,64,64);
+	$Z5/ImageRect.texture = load("res://images/zombies/flag/mini.png");
 	$Z5.zombie_name = "flag";
 	$Z5/Label.text = String.num_uint64(get_zombie_energy($Z5.zombie_name));
 	$Z5/NumberSprite/Label.text = "5";
 	
 	# 橄榄球僵尸
-	$Z6/Sprite2D.texture = load("res://images/zombies/football/football_0.png");
-	$Z6/Sprite2D.region_rect = Rect2(48,4,64,64);
+	$Z6/ImageRect.texture = load("res://images/zombies/football/mini.png");
 	$Z6.zombie_name = "football";
 	$Z6/Label.text = String.num_uint64(get_zombie_energy($Z6.zombie_name));
 	$Z6/NumberSprite/Label.text = "6";
@@ -63,11 +59,20 @@ func cancel():
 	pass;
 
 func active_zombie(name):
+	var card = get_card_by_name(name);
+	if card != null:
+		card.cool_down_start();
 	energy -= get_zombie_energy(name);
 	cancel();
 	pass;
 
+func add_energy(amout):
+	energy += amout;
+	pass
+	
 func select_zombie(i):
+	if not cards[i].is_ready():
+		return null;
 	var cost = get_zombie_energy(cards[i].zombie_name);
 	if cost > energy:
 		return null;
@@ -85,3 +90,9 @@ func get_zombie_energy(name):
 		"door": return 200;
 		"football": return 500;
 		_: return 99999;
+		
+func get_card_by_name(name):
+	for card in cards:
+		if card.zombie_name == name:
+			return card;
+	pass

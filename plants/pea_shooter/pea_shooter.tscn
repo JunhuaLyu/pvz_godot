@@ -57,6 +57,7 @@ speed_scale = 10.4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7a3d3")
+disabled = true
 
 [node name="detect" type="Area2D" parent="."]
 collision_layer = 0

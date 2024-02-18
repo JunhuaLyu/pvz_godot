@@ -189,7 +189,7 @@ animations = [{
 }]
 
 [node name="ZombieBase" instance=ExtResource("1_4y36b")]
-life = 260
+life = 250
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_e22l6")

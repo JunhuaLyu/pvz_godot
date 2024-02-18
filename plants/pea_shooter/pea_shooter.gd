@@ -19,6 +19,7 @@ func set_active(a):
 	active = a;
 	if active:
 		$AnimationNormal.play("pea_shooter_normal");
+		$CollisionShape2D.set_deferred("disabled", false);
 	pass;
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -39,8 +40,8 @@ func _process(delta):
 
 func emit_pea():
 	var pea = pea_res.instantiate();
-	pea.position = Vector2(30, -15);
-	add_child(pea);
+	pea.position = position + Vector2(30, -15);
+	get_parent().add_child(pea);
 	pass
 
 func under_attacked(damage):

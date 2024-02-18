@@ -41,7 +41,7 @@ func to_eating(collide):
 	state = "eating"
 	target = collide.get_collider();
 	$walkAni.stop();
-	$walkAni.speed_scale = 8 * speed_scale;
+	$walkAni.speed_scale = 5 * speed_scale;
 	$walkAni.play("zombie_eat");
 	pass;	
 	

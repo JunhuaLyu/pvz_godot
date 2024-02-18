@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cncpluxb77heo"]
+[gd_scene load_steps=13 format=3 uid="uid://cncpluxb77heo"]
 
 [ext_resource type="Texture2D" uid="uid://bmfxuxsaypv4m" path="res://battle/PC1.png" id="1_p587s"]
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_rtcwr"]
 [ext_resource type="PackedScene" uid="uid://cjqtoc8dtrrmw" path="res://battle/item_bar.tscn" id="2_7ad22"]
 [ext_resource type="PackedScene" uid="uid://ca8w73ku84sdr" path="res://battle/zombie_panel.tscn" id="4_f6nu1"]
 [ext_resource type="Script" path="res://battle/CountDown.gd" id="5_ldj84"]
+[ext_resource type="Texture2D" uid="uid://bow4nude2ofop" path="res://images/items/zombies_coming.png" id="6_yxh6a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x8a60"]
 font_size = 21
@@ -53,6 +54,9 @@ font_color = Color(1, 0.0588235, 0.0352941, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0ag5v"]
 size = Vector2(20, 600)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xcuyb"]
+size = Vector2(80, 90)
+
 [node name="battle" type="Node2D"]
 script = ExtResource("1_rtcwr")
 
@@ -62,10 +66,11 @@ centered = false
 offset = Vector2(-150, 0)
 
 [node name="item_bar" parent="." instance=ExtResource("2_7ad22")]
+scale = Vector2(0.79, 0.79)
 
 [node name="ZombiePanel" parent="." instance=ExtResource("4_f6nu1")]
-position = Vector2(430, -8)
-scale = Vector2(0.7, 0.7)
+position = Vector2(450, 0)
+scale = Vector2(0.79, 0.79)
 
 [node name="CountDown" type="Label" parent="."]
 offset_left = 410.0
@@ -100,5 +105,18 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="zombie_win_line"]
 shape = SubResource("RectangleShape2D_0ag5v")
+
+[node name="plant_detect" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="plant_detect"]
+shape = SubResource("RectangleShape2D_xcuyb")
+
+[node name="ZombiesComingRect" type="TextureRect" parent="."]
+visible = false
+offset_left = 164.0
+offset_top = 266.0
+offset_right = 736.0
+offset_bottom = 334.0
+texture = ExtResource("6_yxh6a")
 
 [connection signal="body_entered" from="zombie_win_line" to="." method="_on_zombie_win_line_body_entered"]

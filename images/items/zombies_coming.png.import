@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bru53hxqwphwj"
-path="res://.godot/imported/item_bar.png-954140bad6f1d287d36f7770658eb8ac.ctex"
+uid="uid://bow4nude2ofop"
+path="res://.godot/imported/zombies_coming.png-8d4d379f5be0660842dc2b860ba70a98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://battle/item_bar.png"
-dest_files=["res://.godot/imported/item_bar.png-954140bad6f1d287d36f7770658eb8ac.ctex"]
+source_file="res://images/items/zombies_coming.png"
+dest_files=["res://.godot/imported/zombies_coming.png-8d4d379f5be0660842dc2b860ba70a98.ctex"]
 
 [params]
 

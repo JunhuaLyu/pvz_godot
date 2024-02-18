@@ -1,6 +1,7 @@
 extends Label
 
-var time_left = 10 * 60 + 1;
+var time_cout = 10 * 60 + 1;
+var time_left = time_cout;
 var _count_stop = false;
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,3 +26,6 @@ func count_stop():
 	
 func get_time_left():
 	return int(time_left);
+
+func get_time():
+	return int(time_cout - time_left);

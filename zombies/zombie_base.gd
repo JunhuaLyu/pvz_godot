@@ -5,7 +5,7 @@ extends CharacterBody2D
 var speed_scale = 1;
 var state = "walk";
 @export var life = 10;
-var damage = 10;
+@export var damage = 10;
 var speed_interval = Vector2(0, 0);
 var target = null;
 var cold_timer;

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqcje52ladpr3"]
+
+[ext_resource type="Script" path="res://plants/plant_base.gd" id="1_gdrwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l7f1b"]
+
+[node name="PlantBase" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_gdrwn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l7f1b")
+disabled = true

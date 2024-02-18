@@ -1,25 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://dfp2gunkveilo"]
+[gd_scene load_steps=4 format=3 uid="uid://dfp2gunkveilo"]
 
-[ext_resource type="Shader" path="res://effect/on_fire.gdshader" id="1_hex2t"]
+[ext_resource type="Shader" path="res://effect/gray.gdshader" id="1_oa3yr"]
 [ext_resource type="Texture2D" uid="uid://cw767mdtowkn3" path="res://images/items/card_bg.png" id="2_fi854"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_uutq6"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0ww0x"]
-noise = SubResource("FastNoiseLite_uutq6")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_3niyb"]
-shader = ExtResource("1_hex2t")
-shader_parameter/noise_speed = 0.5
-shader_parameter/noise_size = 0.5
-shader_parameter/edge_color = Color(1, 0, 0.00392157, 1)
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_0ww0x")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lccsf"]
+shader = ExtResource("1_oa3yr")
+shader_parameter/range = 0.0
 
 [node name="TestFire" type="TextureRect"]
-material = SubResource("ShaderMaterial_3niyb")
 offset_left = 23.0
 offset_top = 21.0
 offset_right = 119.0
 offset_bottom = 141.0
 texture = ExtResource("2_fi854")
 stretch_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_lccsf")
+layout_mode = 0
+offset_left = 26.0
+offset_top = 55.0
+offset_right = 66.0
+offset_bottom = 95.0
+color = Color(1, 1, 1, 0)

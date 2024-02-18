@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0qftrxlqjvv7"]
+[gd_scene load_steps=13 format=3 uid="uid://c0qftrxlqjvv7"]
 
 [ext_resource type="Shader" path="res://effect/on_fire.gdshader" id="1_add7d"]
 [ext_resource type="Script" path="res://battle/zombie_card.gd" id="1_wfvdr"]
-[ext_resource type="Texture2D" uid="uid://b0u77jdmog0gp" path="res://images/zombies/normal/zombie_1.png" id="2_hdyfx"]
 [ext_resource type="Texture2D" uid="uid://cw767mdtowkn3" path="res://images/items/card_bg.png" id="2_tv33n"]
+[ext_resource type="Shader" path="res://effect/gray_screen.gdshader" id="4_r2m0s"]
+[ext_resource type="Texture2D" uid="uid://dto4dprgg8n8x" path="res://images/zombies/normal/mini.png" id="5_21dvy"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0oovu"]
 
@@ -12,10 +13,19 @@ noise = SubResource("FastNoiseLite_0oovu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ubgha"]
 shader = ExtResource("1_add7d")
-shader_parameter/noise_speed = 0.41
-shader_parameter/noise_size = 0.35
+shader_parameter/noise_speed = 0.84
+shader_parameter/noise_size = 1.0
 shader_parameter/edge_color = Color(0.984314, 0, 0, 1)
 shader_parameter/noise_texture = SubResource("NoiseTexture2D_8q52a")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dvyh5"]
+resource_local_to_scene = true
+shader = ExtResource("4_r2m0s")
+shader_parameter/range = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfia7"]
+line_spacing = 0.0
+font_size = 18
 
 [sub_resource type="Gradient" id="Gradient_p1nbc"]
 colors = PackedColorArray(1, 1, 0, 1, 1, 1, 1, 0)
@@ -36,22 +46,28 @@ offset_bottom = 120.0
 texture = ExtResource("2_tv33n")
 script = ExtResource("1_wfvdr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(48, 48)
-texture = ExtResource("2_hdyfx")
-region_enabled = true
-region_rect = Rect2(58, 20, 64, 64)
+[node name="ImageRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_dvyh5")
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 80.0
+offset_bottom = 80.0
+texture = ExtResource("5_21dvy")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = 32.0
 offset_top = 80.0
 offset_right = 80.0
 offset_bottom = 104.0
 text = "50"
+label_settings = SubResource("LabelSettings_rfia7")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="NumberSprite" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 80.0
 offset_right = 40.0
@@ -59,6 +75,7 @@ offset_bottom = 112.0
 texture = SubResource("GradientTexture2D_b43fh")
 
 [node name="Label" type="Label" parent="NumberSprite"]
+layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)

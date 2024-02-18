@@ -3,6 +3,9 @@ extends Node2D
 var pea_shooter_tscn = preload("res://plants/pea_shooter/pea_shooter.tscn");
 var snow_pea_tscn = preload("res://plants/snow_pea/snow_pea.tscn");
 var sunflower_tscn = preload("res://plants/sunflower/sunflower.tscn");
+var wall_nut_tscn = preload("res://plants/wall_nut.tscn");
+
+
 var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
 var zombie_conehead_tscn = preload("res://zombies/zombie_conehead.tscn");
 var zombie_buckethead_tscn = preload("res://zombies/zombie_buckethead.tscn");
@@ -15,6 +18,8 @@ var sunshine_list = [];
 var sun_target;
 var zombie_selected = null;
 var _battle_end = false;
+
+var _phase = 0;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$item_bar.connect("plant_selected", _on_plant_select);
@@ -28,6 +33,7 @@ func _process(delta):
 	if $CountDown.get_time_left() == 0:
 		battle_end(true);
 		return;
+	check_phase();
 	sunshine_list = sunshine_list.filter(
 		func(s): 
 			var width = sun_target.x - s.position.x;
@@ -62,6 +68,7 @@ func _input(event):
 		return;
 	if event is InputEventMouseMotion and plant_selected != null:
 		plant_selected.position = event.position;
+		$plant_detect.position = event.position;
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if plant_selected != null:
@@ -115,6 +122,8 @@ func _on_sunshine_generated(position):
 	pass
 
 func match_plant_field(position):
+	if $plant_detect.has_overlapping_bodies():
+		return false;
 	for i in range(9):
 		for j in range(5):
 			if position.x > 145 + i * 80 - 30 and position.x < 145 + i * 80 + 30 and position.y > 135 + j * 97 - 40 and position.y < 135 + j * 97 + 40:
@@ -154,6 +163,8 @@ func get_plant_selected_sprite(plant_name):
 			plant = snow_pea_tscn.instantiate();
 		"sunflower":
 			plant = sunflower_tscn.instantiate();
+		"wall_nut":
+			plant = wall_nut_tscn.instantiate();
 		_:
 			pass;
 	plant.scale = Vector2(0.8, 0.8);
@@ -196,3 +207,23 @@ func _on_zombie_win_line_body_entered(body):
 	battle_end(false);
 	$CountDown.count_stop();
 	pass # Replace with function body.
+
+func check_phase():
+	var secs = $CountDown.get_time();
+	var phase = int(secs / 120);
+	if _phase != phase:
+		to_phase(phase);
+	pass
+
+func to_phase(phase):
+	_phase = phase;
+	match phase:
+		1: $ZombiePanel.add_energy(200);
+		2: $ZombiePanel.add_energy(400);
+		3: $ZombiePanel.add_energy(700);
+		4: $ZombiePanel.add_energy(1200);
+		_: return;
+	$ZombiesComingRect.visible = true;
+	await get_tree().create_timer(1).timeout;
+	$ZombiesComingRect.visible = false;
+	pass
