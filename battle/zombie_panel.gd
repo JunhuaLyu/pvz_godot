@@ -41,6 +41,8 @@ func _ready():
 	$Z6/Label.text = String.num_uint64(get_zombie_energy($Z6.zombie_name));
 	$Z6/NumberSprite/Label.text = "6";
 	
+	$Z7/ImageRect.texture = load("res://images/zombies/jack_in_the_box/mini.png");
+	$Z7/Label.text = String.num_uint64(get_zombie_energy($Z7.zombie_name));
 	$Z7/NumberSprite/Label.text = "7";
 	
 	# 雾
@@ -94,6 +96,7 @@ func get_zombie_energy(name):
 		"door": return 200;
 		"football": return 500;
 		"fog": return 100;
+		"jack_in_the_box": return 200;
 		_: return 99999;
 		
 func get_card_by_name(name):

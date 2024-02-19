@@ -13,6 +13,7 @@ var zombie_buckethead_tscn = preload("res://zombies/zombie_buckethead.tscn");
 var zombie_flag_tscn = preload("res://zombies/zombie_flag.tscn");
 var zombie_door_tscn = preload("res://zombies/zombie_door.tscn");
 var zombie_football_tscn = preload("res://zombies/zombie_football.tscn");
+var zombie_jack_tscn = preload("res://zombies/zombie_jack_in_the_box.tscn");
 
 var plant_selected = null;
 var sunshine_list = [];
@@ -79,7 +80,7 @@ func _input(event):
 			shovel_release();
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			if plant_selected != null and match_plant_field(event.position):
-				plant_selected = null;
+				pass;
 			elif _shovel != null:
 				if _shovel.get_child(0).has_overlapping_bodies():
 					for body in _shovel.get_child(0).get_overlapping_bodies():
@@ -134,7 +135,7 @@ func _on_sunshine_generated(position):
 	
 func plant_selected_cancel():
 	if plant_selected != null:
-		$BattleRect.remove_child(plant_selected);
+		remove_child(plant_selected);
 		plant_selected = null;	
 	pass
 
@@ -161,10 +162,13 @@ func match_plant_field(position):
 		for j in range(5):
 			if position.x > 145 + i * 80 - 30 and position.x < 145 + i * 80 + 30 and position.y > 135 + j * 97 - 40 and position.y < 135 + j * 97 + 40:
 				plant_selected.position = Vector2(145 + i * 80, 135 + j * 97);
+				remove_child(plant_selected);
+				$BattleRect.add_child(plant_selected);
 				plant_selected.set_active(true);
 				$item_bar.plant_active(plant_selected.get_plant_name());
 				if plant_selected.get_plant_name() == "sunflower":
 					plant_selected.connect("sunshine_generate", _on_sunshine_generated);
+				plant_selected = null;
 				return true;
 	return false;
 	
@@ -189,11 +193,11 @@ func _on_plant_select(name):
 	if _battle_end:
 		return;
 	if plant_selected != null:
-		$BattleRect.remove_child(plant_selected);
+		remove_child(plant_selected);
 	plant_selected = get_plant_selected_sprite(name);
 	if plant_selected != null:
 		plant_selected.position = Input.get_last_mouse_velocity();
-		$BattleRect.add_child(plant_selected);
+		add_child(plant_selected);
 		shovel_release();
 	pass
 	
@@ -236,6 +240,8 @@ func get_zombie(zombie_name):
 			zombie = zombie_door_tscn.instantiate();
 		"football":
 			zombie = zombie_football_tscn.instantiate();
+		"jack_in_the_box":
+			zombie = zombie_jack_tscn.instantiate();
 		_:
 			zombie = zombie_normal_tscn.instantiate();
 	zombie.scale = Vector2(0.9, 0.9);

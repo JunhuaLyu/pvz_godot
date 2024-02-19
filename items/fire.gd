@@ -13,6 +13,6 @@ func _on_animated_sprite_2d_animation_finished():
 	if self.has_overlapping_bodies():
 		for body in self.get_overlapping_bodies():
 			if body.has_method("under_attacked"):
-				body.under_attacked(500);
+				body.under_attacked(5000);
 	queue_free();
 	pass # Replace with function body.

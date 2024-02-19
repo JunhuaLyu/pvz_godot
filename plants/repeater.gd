@@ -2,8 +2,8 @@ extends "res://plants/plant_base.gd"
 
 var pea_res = preload("res://items/pea.tscn");
 var fighting = false;
-var attack1 = 0.0;
-var attack2 = 0.0;
+var attack1 = 1.3;
+var attack2 = 1.3;
 var attack_interval = 1.4;
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

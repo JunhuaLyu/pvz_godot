@@ -72,7 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_er1h3"]
-size = Vector2(900, 20)
+size = Vector2(1000, 20)
 
 [node name="PlantBase" instance=ExtResource("1_vspg3")]
 script = ExtResource("2_g45ch")
