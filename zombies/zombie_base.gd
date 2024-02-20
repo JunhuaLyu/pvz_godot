@@ -10,6 +10,7 @@ var speed_interval = Vector2(0, 0);
 var target = null;
 var cold_timer;
 var cold_material;
+var _life;
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	speed_interval = Vector2(-walk_speed, 0);
@@ -20,6 +21,7 @@ func _ready():
 	shader.set_code(code);
 	cold_material.shader = shader;
 	$AnimatedSprite2D.play("walk");
+	_life = life;
 	pass # Replace with function body.
 
 
@@ -79,11 +81,11 @@ func on_effect_cold(effect):
 	pass
 
 func under_attacked(damage, effect = null):
-	if life > 0:
-		life -= damage;
+	if _life > 0:
+		_life -= damage;
 		if effect == "cold":
 			on_effect_cold(effect);
-		if life <= 0:
+		if _life <= 0:
 			dead();
 	pass
 
@@ -91,7 +93,7 @@ func _on_animated_sprite_2d_animation_finished():
 	if state == "dead":
 		queue_free();
 	elif state == "eating":
-		if life > 0:
+		if _life > 0:
 			if target != null and target.has_method("under_attacked"):
 				target.under_attacked(damage);
 		$AnimatedSprite2D.play("eating");

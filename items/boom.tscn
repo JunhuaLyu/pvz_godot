@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://c0h2epws000nr"]
 
-[ext_resource type="Script" path="res://items/fire.gd" id="1_57mdt"]
+[ext_resource type="Script" path="res://items/boom.gd" id="1_uroff"]
 [ext_resource type="Texture2D" uid="uid://bsafaopesi7m7" path="res://images/items/boom/boom_0.png" id="2_hbihp"]
 [ext_resource type="Texture2D" uid="uid://rmfi4jx6kqb3" path="res://images/items/boom/boom_1.png" id="3_jy3ic"]
 [ext_resource type="Texture2D" uid="uid://cj0247flk6iul" path="res://images/items/boom/boom_2.png" id="4_fqb4v"]
@@ -39,7 +39,7 @@ animations = [{
 
 [node name="Boom" type="Area2D"]
 collision_layer = 8
-script = ExtResource("1_57mdt")
+script = ExtResource("1_uroff")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_f1p3n")

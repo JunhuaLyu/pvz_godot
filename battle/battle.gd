@@ -6,6 +6,7 @@ var sunflower_tscn = preload("res://plants/sunflower/sunflower.tscn");
 var wall_nut_tscn = preload("res://plants/wall_nut.tscn");
 var jalapeno_tscn = preload("res://plants/jalapeno.tscn");
 var repeater_tscn = preload("res://plants/repeater.tscn");
+var cherry_boom_tscn = preload("res://plants/cherry_boom.tscn");
 
 var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
 var zombie_conehead_tscn = preload("res://zombies/zombie_conehead.tscn");
@@ -216,6 +217,8 @@ func get_plant_selected_sprite(plant_name):
 			plant = jalapeno_tscn.instantiate();
 		"repeater":
 			plant = repeater_tscn.instantiate();
+		"cherry_boom":
+			plant = cherry_boom_tscn.instantiate();
 		_:
 			pass;
 	plant.scale = Vector2(0.8, 0.8);

@@ -124,7 +124,7 @@ animations = [{
 [node name="ZombieBase" instance=ExtResource("1_rciy8")]
 script = ExtResource("2_5aceq")
 walk_speed = 20
-life = 200
+life = 60
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_73psd")
