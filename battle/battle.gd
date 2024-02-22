@@ -7,6 +7,7 @@ var wall_nut_tscn = preload("res://plants/wall_nut.tscn");
 var jalapeno_tscn = preload("res://plants/jalapeno.tscn");
 var repeater_tscn = preload("res://plants/repeater.tscn");
 var cherry_boom_tscn = preload("res://plants/cherry_boom.tscn");
+var spike_weed_tscn = preload("res://plants/spike_weed.tscn");
 
 var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
 var zombie_conehead_tscn = preload("res://zombies/zombie_conehead.tscn");
@@ -219,6 +220,8 @@ func get_plant_selected_sprite(plant_name):
 			plant = repeater_tscn.instantiate();
 		"cherry_boom":
 			plant = cherry_boom_tscn.instantiate();
+		"spike_weed":
+			plant = spike_weed_tscn.instantiate();
 		_:
 			pass;
 	plant.scale = Vector2(0.8, 0.8);
@@ -248,6 +251,7 @@ func get_zombie(zombie_name):
 		_:
 			zombie = zombie_normal_tscn.instantiate();
 	zombie.scale = Vector2(0.9, 0.9);
+	zombie.z_index = 1;
 	return zombie;
 
 func battle_end(plant_win):

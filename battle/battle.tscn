@@ -116,6 +116,7 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_0ag5v")
 
 [node name="plant_detect" type="Area2D" parent="."]
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="plant_detect"]
 shape = SubResource("RectangleShape2D_xcuyb")
@@ -143,6 +144,7 @@ texture = ExtResource("8_wvbyi")
 position = Vector2(-20, 20)
 scale = Vector2(1.66667, 1.66667)
 collision_layer = 128
+collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShovelSlot/Shovel/Detect"]
 shape = SubResource("CircleShape2D_4dp3a")

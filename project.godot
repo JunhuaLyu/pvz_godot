@@ -32,6 +32,7 @@ window/stretch/mode="viewport"
 2d_physics/layer_2="plant_projectile"
 2d_physics/layer_3="zombie"
 2d_physics/layer_4="zombie_projectile"
+2d_physics/layer_5="plant_weed"
 2d_physics/layer_8="shovel"
 
 [rendering]

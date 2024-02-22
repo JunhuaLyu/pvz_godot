@@ -1,0 +1,109 @@
+[gd_scene load_steps=24 format=3 uid="uid://bwr4boki63xwb"]
+
+[ext_resource type="PackedScene" uid="uid://cqcje52ladpr3" path="res://plants/plant_base.tscn" id="1_6qn8y"]
+[ext_resource type="Script" path="res://plants/spike_weed.gd" id="2_eun3g"]
+[ext_resource type="Texture2D" uid="uid://t2p5ci32plyo" path="res://images/plants/spike_weed/spike_weed_0.png" id="3_i1cj7"]
+[ext_resource type="Texture2D" uid="uid://dsqiola5lnqp6" path="res://images/plants/spike_weed/spike_weed_1.png" id="4_eqna7"]
+[ext_resource type="Texture2D" uid="uid://ct0lpxlfnulov" path="res://images/plants/spike_weed/spike_weed_2.png" id="5_xuvoc"]
+[ext_resource type="Texture2D" uid="uid://dgyy27pllgv3v" path="res://images/plants/spike_weed/spike_weed_3.png" id="6_usen2"]
+[ext_resource type="Texture2D" uid="uid://lu0m07dxf8bv" path="res://images/plants/spike_weed/spike_weed_4.png" id="7_cg47k"]
+[ext_resource type="Texture2D" uid="uid://douevpcn6quq0" path="res://images/plants/spike_weed/spike_weed_5.png" id="8_one4p"]
+[ext_resource type="Texture2D" uid="uid://bql6tvchnvnp6" path="res://images/plants/spike_weed/spike_weed_6.png" id="9_s5lto"]
+[ext_resource type="Texture2D" uid="uid://c7v86r2oukfiq" path="res://images/plants/spike_weed/spike_weed_7.png" id="10_6e5wl"]
+[ext_resource type="Texture2D" uid="uid://ybjqpgjqowkq" path="res://images/plants/spike_weed/spike_weed_8.png" id="11_wvumy"]
+[ext_resource type="Texture2D" uid="uid://duy64m77fd0xs" path="res://images/plants/spike_weed/spike_weed_9.png" id="12_t2orm"]
+[ext_resource type="Texture2D" uid="uid://w7gl6mq0bak1" path="res://images/plants/spike_weed/spike_weed_10.png" id="13_33yf8"]
+[ext_resource type="Texture2D" uid="uid://br8kecob1v4ty" path="res://images/plants/spike_weed/spike_weed_11.png" id="14_f7pfj"]
+[ext_resource type="Texture2D" uid="uid://djarbvjvgbimk" path="res://images/plants/spike_weed/spike_weed_12.png" id="15_eveba"]
+[ext_resource type="Texture2D" uid="uid://sg4t63nvfqow" path="res://images/plants/spike_weed/spike_weed_13.png" id="16_t2nh0"]
+[ext_resource type="Texture2D" uid="uid://dptgf1uuttxnm" path="res://images/plants/spike_weed/spike_weed_14.png" id="17_vwvsi"]
+[ext_resource type="Texture2D" uid="uid://de6m56ck6wbkr" path="res://images/plants/spike_weed/spike_weed_15.png" id="18_2f6w6"]
+[ext_resource type="Texture2D" uid="uid://dh04suh6tmoy7" path="res://images/plants/spike_weed/spike_weed_16.png" id="19_aynni"]
+[ext_resource type="Texture2D" uid="uid://c8fwpjdifejyt" path="res://images/plants/spike_weed/spike_weed_17.png" id="20_ry8ja"]
+[ext_resource type="Texture2D" uid="uid://c7lqog8wrkf1a" path="res://images/plants/spike_weed/spike_weed_18.png" id="21_y42b0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_huom7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_i1cj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eqna7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xuvoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_usen2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cg47k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_one4p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_s5lto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_6e5wl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wvumy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_t2orm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_33yf8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_f7pfj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eveba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_t2nh0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vwvsi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_2f6w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_aynni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_ry8ja")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_y42b0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_noj4g"]
+size = Vector2(80, 80)
+
+[node name="PlantBase" instance=ExtResource("1_6qn8y")]
+collision_layer = 16
+script = ExtResource("2_eun3g")
+plant_name = "spike_weed"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+position = Vector2(0, 30)
+sprite_frames = SubResource("SpriteFrames_huom7")
+
+[node name="SpikeArea" type="Area2D" parent="." index="2"]
+position = Vector2(0, -10)
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpikeArea" index="0"]
+shape = SubResource("RectangleShape2D_noj4g")
+disabled = true

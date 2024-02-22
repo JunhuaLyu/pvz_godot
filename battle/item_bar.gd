@@ -9,8 +9,10 @@ var sunshine_increase_speed = 2;
 var cards = {};
 # Called when the node enters the scene tree for the first time.
 func _ready():	
+	var w = 60;
+	var l = 84;
 	var plant_card = card_tscn.instantiate();
-	plant_card.position = Vector2(80, 10);
+	plant_card.position = Vector2(l, 10);
 	var card_sprite = load("res://plants/sunflower/sunflower_card.tscn").instantiate();	
 	var name = "sunflower";
 	plant_card.plant_cooldown = 5.0;
@@ -20,7 +22,7 @@ func _ready():
 	cards[name] = plant_card;
 	
 	plant_card = card_tscn.instantiate();
-	plant_card.position = Vector2(80 + 1 * 54, 10);
+	plant_card.position = Vector2(l + 1 * w, 10);
 	card_sprite = load("res://plants/pea_shooter/pea_shooter_card.tscn").instantiate();
 	name = "pea_shooter";
 	plant_card.plant_cooldown = 10.0;
@@ -30,7 +32,7 @@ func _ready():
 	cards[name] = plant_card;
 
 	plant_card = card_tscn.instantiate();
-	plant_card.position = Vector2(80 + 2 * 54, 10);
+	plant_card.position = Vector2(l + 2 * w, 10);
 	card_sprite = Sprite2D.new();
 	card_sprite.texture = load("res://images/plants/snow_pea/snow_pea_0.png");
 	card_sprite.offset = Vector2(42, 40);
@@ -43,7 +45,7 @@ func _ready():
 	cards[name] = plant_card;
 	
 	plant_card = card_tscn.instantiate();
-	plant_card.position = Vector2(80 + 3 * 54, 10);
+	plant_card.position = Vector2(l + 3 * w, 10);
 	card_sprite = Sprite2D.new();
 	card_sprite.texture = load("res://images/plants/wall_nut/wall_nut_0.png");
 	card_sprite.offset = Vector2(42, 40);
@@ -56,7 +58,7 @@ func _ready():
 	cards[name] = plant_card;
 	
 	plant_card = card_tscn.instantiate();
-	plant_card.position = Vector2(80 + 4 * 54, 10);
+	plant_card.position = Vector2(l + 4 * w, 10);
 	card_sprite = Sprite2D.new();
 	card_sprite.texture = load("res://images/plants/jalapeno/jalapeno_0.png");
 	card_sprite.offset = Vector2(42, 40);
@@ -69,7 +71,7 @@ func _ready():
 	cards[name] = plant_card;
 	
 	plant_card = card_tscn.instantiate();
-	plant_card.position = Vector2(80 + 5 * 54, 10);
+	plant_card.position = Vector2(l + 5 * w, 10);
 	card_sprite = Sprite2D.new();
 	card_sprite.texture = load("res://images/plants/repeater/repeater_0.png");
 	card_sprite.offset = Vector2(42, 40);
@@ -82,13 +84,26 @@ func _ready():
 	cards[name] = plant_card;
 	
 	plant_card = card_tscn.instantiate();
-	plant_card.position = Vector2(80 + 6 * 54, 10);
+	plant_card.position = Vector2(l + 6 * w, 10);
 	card_sprite = Sprite2D.new();
 	card_sprite.texture = load("res://images/plants/cherry_boom/cherry_boom_0.png");
 	card_sprite.offset = Vector2(42, 40);
 	card_sprite.scale = Vector2(0.6, 0.6);
 	plant_card.plant_cooldown = 50.0;
 	name = "cherry_boom";
+	plant_card.set_plant(name, card_sprite, get_plant_cost(name));
+	plant_card.connect("plant_selected", _on_plant_select);
+	add_child(plant_card);
+	cards[name] = plant_card;
+	
+	plant_card = card_tscn.instantiate();
+	plant_card.position = Vector2(l + 7 * w, 10);
+	card_sprite = Sprite2D.new();
+	card_sprite.texture = load("res://images/plants/spike_weed/spike_weed_0.png");
+	card_sprite.offset = Vector2(42, 40);
+	card_sprite.scale = Vector2(0.6, 0.6);
+	plant_card.plant_cooldown = 7.5;
+	name = "spike_weed";
 	plant_card.set_plant(name, card_sprite, get_plant_cost(name));
 	plant_card.connect("plant_selected", _on_plant_select);
 	add_child(plant_card);
@@ -126,6 +141,7 @@ func get_plant_cost(name):
 		"jalapeno": return 125;
 		"repeater": return 200;
 		"cherry_boom": return 150;
+		"spike_weed": return 100;
 		_: return 99999999;
 
 func plant_active(name):
