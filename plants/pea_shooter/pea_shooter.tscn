@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dw3qyjp3reuht"]
+[gd_scene load_steps=20 format=3 uid="uid://dw3qyjp3reuht"]
 
 [ext_resource type="Script" path="res://plants/pea_shooter/pea_shooter.gd" id="1_3oj6p"]
 [ext_resource type="Texture2D" uid="uid://82wki65ubeec" path="res://plants/pea_shooter/pea_shooter_1.png" id="1_u6ulm"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dnmdhefg7x8b7" path="res://plants/pea_shooter/normal/pea_shooter_10.png" id="12_1ew1j"]
 [ext_resource type="Texture2D" uid="uid://b4yiqqw5gofys" path="res://plants/pea_shooter/normal/pea_shooter_11.png" id="13_dtqte"]
 [ext_resource type="Texture2D" uid="uid://07lw8js4oava" path="res://plants/pea_shooter/normal/pea_shooter_12.png" id="14_38psn"]
+[ext_resource type="AudioStream" uid="uid://c7v0ubarf0s8" path="res://media/throw.ogg" id="15_t46hl"]
 
 [sub_resource type="Animation" id="Animation_x38jp"]
 resource_name = "pea_shooter_normal"
@@ -65,3 +66,6 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detect"]
 shape = SubResource("RectangleShape2D_8hvd1")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_t46hl")

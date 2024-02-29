@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://chrmup3eie8x8"]
+[gd_scene load_steps=5 format=3 uid="uid://chrmup3eie8x8"]
 
 [ext_resource type="Script" path="res://items/boom_light.gd" id="1_1oh06"]
 [ext_resource type="Texture2D" uid="uid://daubjx06ckk5y" path="res://images/items/boom/boom.png" id="1_d3wmf"]
+[ext_resource type="AudioStream" uid="uid://b2fklv3n1f4fv" path="res://media/cherrybomb.ogg" id="3_ul4ty"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rtcxw"]
 radius = 80.0
@@ -16,3 +17,6 @@ shape = SubResource("CircleShape2D_rtcxw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_d3wmf")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ul4ty")

@@ -28,6 +28,7 @@ func _process(delta):
 	pass
 
 func emit_pea():
+	$Audio.play();
 	var pea = pea_res.instantiate();
 	pea.position = position + Vector2(30, -15);
 	get_parent().add_child(pea);

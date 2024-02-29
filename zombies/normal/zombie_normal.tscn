@@ -116,7 +116,7 @@ collision_layer = 4
 script = ExtResource("1_pb6cr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("20_i6bxh")
+texture = ExtResource("1_44grr")
 region_rect = Rect2(22, 0, 144, 144)
 
 [node name="walkAni" type="AnimationPlayer" parent="."]

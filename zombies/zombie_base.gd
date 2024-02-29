@@ -1,5 +1,9 @@
 extends CharacterBody2D
-
+# 1. 继承base
+# 2. 修改speed life damage
+# 3. AnimatedSprite2D
+# 4. AnimatedSprite2D dead eating walk
+# 5. AnimatedSprite2D on_finish
 # 像素/毫秒
 @export var walk_speed = 10;
 var speed_scale = 1;
@@ -49,6 +53,7 @@ func to_eating(collide):
 	$AnimatedSprite2D.stop();
 	$AnimatedSprite2D.play("eating");
 	state = "eating"
+	$chomp.play();
 	pass;	
 	
 func to_walk():
@@ -82,6 +87,7 @@ func on_effect_cold(effect):
 
 func under_attacked(damage, effect = null):
 	if _life > 0:
+		$tap.play();
 		_life -= damage;
 		if effect == "cold":
 			on_effect_cold(effect);
@@ -97,6 +103,7 @@ func _on_animated_sprite_2d_animation_finished():
 			if target != null and target.has_method("under_attacked"):
 				target.under_attacked(damage);
 		$AnimatedSprite2D.play("eating");
+		$chomp.play();
 	elif state == "walk":
 		$AnimatedSprite2D.play("walk");
 	pass # Replace with function body.

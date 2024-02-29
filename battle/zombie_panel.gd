@@ -4,7 +4,7 @@ var cards;
 
 var select_card = null;
 var selected_material;
-var energy = 1000;
+var energy = 1;
 @export var energy_speed = 5;
 
 # Called when the node enters the scene tree for the first time.

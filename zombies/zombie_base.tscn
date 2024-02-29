@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://csm320hikmlyu"]
+[gd_scene load_steps=5 format=3 uid="uid://csm320hikmlyu"]
 
 [ext_resource type="Script" path="res://zombies/zombie_base.gd" id="1_o0yrd"]
+[ext_resource type="AudioStream" uid="uid://t0oxnssrfbj7" path="res://media/chomp.ogg" id="2_uj3wh"]
+[ext_resource type="AudioStream" uid="uid://cbn8w4u3nsydr" path="res://media/tap.ogg" id="3_4mcvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3w3j"]
 size = Vector2(20, 100)
@@ -12,3 +14,9 @@ script = ExtResource("1_o0yrd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(11, 0)
 shape = SubResource("RectangleShape2D_t3w3j")
+
+[node name="chomp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_uj3wh")
+
+[node name="tap" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4mcvg")

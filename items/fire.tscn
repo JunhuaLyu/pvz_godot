@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ckhku4jab803f"]
+[gd_scene load_steps=13 format=3 uid="uid://ckhku4jab803f"]
 
 [ext_resource type="Script" path="res://items/fire.gd" id="1_taw4j"]
 [ext_resource type="Texture2D" uid="uid://c8qt5pkke3338" path="res://images/plants/jalapeno/fire_0.png" id="1_vt52i"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://buajhggkvnups" path="res://images/plants/jalapeno/fire_5.png" id="6_6cvo4"]
 [ext_resource type="Texture2D" uid="uid://cp3s7n8s4qgy7" path="res://images/plants/jalapeno/fire_6.png" id="7_3fcbf"]
 [ext_resource type="Texture2D" uid="uid://d1ksgxag1ph5k" path="res://images/plants/jalapeno/fire_7.png" id="8_islvm"]
+[ext_resource type="AudioStream" uid="uid://b8kdb4p63eheh" path="res://media/ignite.ogg" id="10_ftibo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1p3n"]
 size = Vector2(900, 20)
@@ -57,5 +58,8 @@ shape = SubResource("RectangleShape2D_f1p3n")
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_dt1ke")
 autoplay = "default"
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ftibo")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

@@ -3,6 +3,7 @@ extends Area2D
 var time = 0.5;
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Audio.play();
 	pass # Replace with function body.
 
 
@@ -14,5 +15,10 @@ func _process(delta):
 			for body in self.get_overlapping_bodies():
 				if body.has_method("under_attacked"):
 					body.under_attacked(500);
-		queue_free();
+		self.visible = false;
 	pass
+
+
+func _on_audio_finished():
+	queue_free();
+	pass # Replace with function body.

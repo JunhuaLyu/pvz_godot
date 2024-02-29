@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cncpluxb77heo"]
+[gd_scene load_steps=20 format=3 uid="uid://cncpluxb77heo"]
 
 [ext_resource type="Texture2D" uid="uid://bmfxuxsaypv4m" path="res://battle/PC1.png" id="1_p587s"]
 [ext_resource type="Script" path="res://battle/battle.gd" id="1_rtcwr"]
@@ -9,6 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://cno62h8vw46tp" path="res://images/items/slot.png" id="7_ljnxj"]
 [ext_resource type="Texture2D" uid="uid://bhfneq2kc62w8" path="res://images/items/shovel.png" id="8_wvbyi"]
 [ext_resource type="PackedScene" uid="uid://c2eyf2yoqhpgr" path="res://items/fog.tscn" id="9_gsred"]
+[ext_resource type="AudioStream" uid="uid://d1wereqh7l2t1" path="res://media/mainmusic.ogg" id="10_epfdj"]
+[ext_resource type="AudioStream" uid="uid://btlndfr0k4s5a" path="res://media/groan.ogg" id="11_up7a1"]
+[ext_resource type="AudioStream" uid="uid://c81yaij5udeha" path="res://media/plant.ogg" id="12_a10do"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_x8a60"]
 font_size = 21
@@ -153,4 +156,18 @@ shape = SubResource("CircleShape2D_4dp3a")
 visible = false
 position = Vector2(65, 49)
 
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_epfdj")
+volume_db = -3.0
+autoplay = true
+
+[node name="groan" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_up7a1")
+
+[node name="plant" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_a10do")
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="."]
+
 [connection signal="body_entered" from="zombie_win_line" to="." method="_on_zombie_win_line_body_entered"]
+[connection signal="finished" from="bgm" to="." method="_on_bgm_finished"]

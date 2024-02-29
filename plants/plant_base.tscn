@@ -11,3 +11,5 @@ script = ExtResource("1_gdrwn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_l7f1b")
 disabled = true
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]

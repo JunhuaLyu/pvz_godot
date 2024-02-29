@@ -9,7 +9,7 @@ var repeater_tscn = preload("res://plants/repeater.tscn");
 var cherry_boom_tscn = preload("res://plants/cherry_boom.tscn");
 var spike_weed_tscn = preload("res://plants/spike_weed.tscn");
 
-var zombie_normal_tscn = preload("res://zombies/normal/zombie_normal.tscn");
+var zombie_normal_tscn = preload("res://zombies/zombie_normal.tscn");
 var zombie_conehead_tscn = preload("res://zombies/zombie_conehead.tscn");
 var zombie_buckethead_tscn = preload("res://zombies/zombie_buckethead.tscn");
 var zombie_flag_tscn = preload("res://zombies/zombie_flag.tscn");
@@ -28,6 +28,7 @@ var _phase = 0;
 func _ready():
 	$item_bar.connect("plant_selected", _on_plant_select);
 	sun_target = $item_bar.get_sunshine_target();
+	#play_bgm_random();
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,6 +46,7 @@ func _process(delta):
 			if abs(width) < 5 and abs(height) < 5:
 				remove_child(s);
 				$item_bar.add_sunshine(25);
+				audio_play("points");
 				return false;
 			var max = 4;
 			var _x = width;
@@ -88,6 +90,7 @@ func _input(event):
 					for body in _shovel.get_child(0).get_overlapping_bodies():
 						if body.has_method("get_plant_name"):
 							body.queue_free();
+							audio_play("shovel");
 			elif $ShovelSlot.get_global_rect().has_point(event.position):
 				plant_selected_cancel();
 				shovel_pick(event.position);
@@ -168,6 +171,7 @@ func match_plant_field(position):
 				$BattleRect.add_child(plant_selected);
 				plant_selected.set_active(true);
 				$item_bar.plant_active(plant_selected.get_plant_name());
+				$plant.play();
 				if plant_selected.get_plant_name() == "sunflower":
 					plant_selected.connect("sunshine_generate", _on_sunshine_generated);
 				plant_selected = null;
@@ -189,6 +193,7 @@ func add_zombie(i):
 	$BattleRect.add_child(zombie);
 	$ZombiePanel.active_zombie(zombie_selected);
 	zombie_selected = null;
+	$groan.play();
 	pass;
 	
 func _on_plant_select(name):
@@ -280,18 +285,34 @@ func to_phase(phase):
 	match phase:
 		1: 
 			$ZombiePanel.add_energy(200);
-			$ZombiePanel.energy_speed = 8;
+			$ZombiePanel.energy_speed = 10;
 		2: 
 			$ZombiePanel.add_energy(400);
-			$ZombiePanel.energy_speed = 12;
+			$ZombiePanel.energy_speed = 15;
 		3: 
-			$ZombiePanel.add_energy(700);
-			$ZombiePanel.energy_speed = 18;
-		4: 
-			$ZombiePanel.add_energy(1200);
+			$ZombiePanel.add_energy(800);
 			$ZombiePanel.energy_speed = 25;
+		4: 
+			$ZombiePanel.add_energy(1600);
+			$ZombiePanel.energy_speed = 40;
 		_: return;
 	$ZombiesComingRect.visible = true;
+	audio_play("finalwave");
 	await get_tree().create_timer(1).timeout;
 	$ZombiesComingRect.visible = false;
 	pass
+
+func play_bgm_random():
+	var resList = ["KitanaiSekai.ogg","mainmusic.mo3.7.ogg","mainmusic.mo3.10.ogg","mainmusic.mo3.11.ogg","mainmusic.ogg"];
+	$bgm.stream = load("res://media/" + resList[randi() % resList.size()]);
+	$bgm.play();
+	pass
+
+func _on_bgm_finished():
+	play_bgm_random();
+	pass # Replace with function body.
+
+func audio_play(file):
+	$AudioPlayer.stream = load("res://media/" + file + ".ogg");
+	$AudioPlayer.play();
+	pass;

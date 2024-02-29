@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c0h2epws000nr"]
+[gd_scene load_steps=11 format=3 uid="uid://c0h2epws000nr"]
 
 [ext_resource type="Script" path="res://items/boom.gd" id="1_uroff"]
 [ext_resource type="Texture2D" uid="uid://bsafaopesi7m7" path="res://images/items/boom/boom_0.png" id="2_hbihp"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cnp1prj1ldibk" path="res://images/items/boom/boom_3.png" id="5_uhc7y"]
 [ext_resource type="Texture2D" uid="uid://b5f6c0xvnntx" path="res://images/items/boom/boom_4.png" id="6_hmps4"]
 [ext_resource type="Texture2D" uid="uid://wr3it10t3mxp" path="res://images/items/boom/boom_5.png" id="7_ekvnh"]
+[ext_resource type="AudioStream" uid="uid://b2fklv3n1f4fv" path="res://media/cherrybomb.ogg" id="8_lq6at"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1p3n"]
 size = Vector2(120, 260)
@@ -49,4 +50,8 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_dt1ke")
 autoplay = "default"
 
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_lq6at")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="finished" from="Audio" to="." method="_on_audio_finished"]

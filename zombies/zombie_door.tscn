@@ -202,7 +202,7 @@ animations = [{
 
 [node name="ZombieBase" instance=ExtResource("1_e3meq")]
 walk_speed = 6
-life = 1000
+life = 1200
 damage = 2
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
